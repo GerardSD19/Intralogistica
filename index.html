@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>S.I. — WCS/WES · Intralogística</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305050A'/%3E%3Cg stroke='%23FF5200' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'%3E%3Cpolyline points='20,5 24,9 20,13'/%3E%3Cpath d='M6,15V13a6,6,0,0,1,6-6H24'/%3E%3Cpolyline points='12,19 8,23 12,27'/%3E%3Cpath d='M26,17v2a6,6,0,0,1-6,6H8'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+/* ── THEME TOKENS ── */
+[data-theme="dark"]{
+  --bg:#05050A;--bg2:#0D0D18;
+  --txt:#F0EEF8;--txt2:rgba(240,238,248,.65);--txt3:rgba(240,238,248,.32);
+  --brd:rgba(240,238,248,.09);--brd2:rgba(240,238,248,.16);
+  --card:rgba(255,255,255,.045);--card-h:rgba(255,255,255,.08);
+  --shine:rgba(255,82,0,.4);
+  --mesh1:rgba(255,82,0,.17);--mesh2:rgba(255,40,0,.13);--mesh3:rgba(255,110,0,.11);
+}
+[data-theme="light"]{
+  --bg:#FAF7F3;--bg2:#F2EDE6;
+  --txt:#1A1410;--txt2:rgba(26,20,16,.7);--txt3:rgba(26,20,16,.4);
+  --brd:rgba(26,20,16,.1);--brd2:rgba(26,20,16,.2);
+  --card:rgba(255,255,255,.55);--card-h:rgba(255,255,255,.8);
+  --shine:rgba(255,82,0,.35);
+  --mesh1:rgba(255,82,0,.13);--mesh2:rgba(255,60,0,.09);--mesh3:rgba(255,130,0,.1);
+}
+
+:root{
+  --a:#FF5200;--a2:#FF8040;--a3:#FF2D00;
+  --syne:'Syne',sans-serif;--inter:'Inter',system-ui,sans-serif;
+}
+
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font-family:var(--inter);cursor:none;transition:background .4s,color .4s}
+
+/* CURSOR */
+#cur{position:fixed;width:9px;height:9px;border-radius:50%;background:var(--a);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cur2{position:fixed;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,82,0,.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .1s ease,top .1s ease,transform .2s}
+
+/* MESH */
+#mesh{position:fixed;inset:0;z-index:0;transition:opacity .4s}
+
+/* STAGE */
+#stage{position:fixed;inset:0;z-index:1}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;animation:sf .45s cubic-bezier(.16,1,.3,1) both}
+.slide.on{display:flex}
+@keyframes sf{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:2px;z-index:300;background:linear-gradient(90deg,var(--a3),var(--a),var(--a2));box-shadow:0 0 14px rgba(255,82,0,.55);transition:width .5s cubic-bezier(.4,0,.2,1)}
+
+/* COUNTER */
+#ctr{position:fixed;bottom:20px;right:26px;z-index:300;font-family:var(--inter);font-size:11px;font-weight:500;letter-spacing:.12em;color:var(--txt3)}
+#ctr b{color:var(--txt2)}
+
+/* THEME TOGGLE */
+#theme-btn{position:fixed;top:20px;right:24px;z-index:300;width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;cursor:none;transition:.2s;opacity:.7}
+#theme-btn:hover{background:var(--card-h);border-color:var(--brd2);opacity:1}
+#theme-btn svg{stroke:var(--txt);fill:none;width:16px;height:16px;transition:opacity .3s}
+#icon-sun{display:none}
+[data-theme="dark"] #icon-moon{display:block}
+[data-theme="dark"] #icon-sun{display:none}
+[data-theme="light"] #icon-moon{display:none}
+[data-theme="light"] #icon-sun{display:block}
+
+/* ARROWS */
+.arr{position:fixed;top:50%;transform:translateY(-50%);z-index:300;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;cursor:none;opacity:.4;transition:.2s}
+.arr:hover{background:rgba(255,82,0,.12);border-color:rgba(255,82,0,.4);opacity:1}
+.arr svg{stroke:var(--txt)}
+#al{left:12px}#ar{right:12px}
+
+/* DECORATIVE */
+.orb{position:absolute;border-radius:50%;border:1px solid;pointer-events:none;animation:spin linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fdot{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--a);pointer-events:none;animation:fd ease-in-out infinite alternate}
+@keyframes fd{to{transform:translateY(-16px)}}
+
+/* INNER */
+.inn{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;padding:56px 80px 52px;display:flex;flex-direction:column;height:100%;justify-content:center}
+
+/* SECTION TAG — DM Sans */
+.stag{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;flex-shrink:0}
+.stag-n{font-family:var(--inter);font-size:10px;font-weight:600;letter-spacing:.2em;color:var(--a);opacity:.75}
+.stag-bar{width:24px;height:1px;background:var(--a);opacity:.5}
+.stag-l{font-family:var(--inter);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--txt3)}
+
+/* HEADINGS — Syne */
+.h1{font-family:var(--syne);font-size:clamp(72px,8.5vw,138px);font-weight:800;line-height:.87;letter-spacing:-.03em;flex-shrink:0}
+.h1 em{font-style:normal;background:linear-gradient(130deg,var(--a),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.htitle{font-family:var(--syne);font-size:clamp(36px,4.2vw,62px);font-weight:800;line-height:.9;letter-spacing:-.025em;flex-shrink:0}
+.hphase{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3.2vw,46px);font-weight:500;font-style:italic;line-height:1;letter-spacing:.01em;flex-shrink:0}
+.hcard{font-family:var(--syne);font-size:clamp(18px,1.9vw,24px);font-weight:700;line-height:1.15}
+
+/* BODY — Inter only */
+.body-xl{font-family:var(--inter);font-size:clamp(17px,1.7vw,22px);color:var(--txt2);line-height:1.75}
+.body-l{font-family:var(--inter);font-size:clamp(15px,1.5vw,19px);color:var(--txt2);line-height:1.7}
+.body-m{font-family:var(--inter);font-size:clamp(14px,1.35vw,17px);color:var(--txt2);line-height:1.65}
+.body-s{font-family:var(--inter);font-size:clamp(13px,1.2vw,15px);color:var(--txt3);line-height:1.6}
+
+/* MONO LABEL — DM Sans */
+.mlbl{font-family:var(--inter);font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3)}
+
+/* GLASS CARD */
+.gc{background:var(--card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--brd);border-radius:14px;position:relative;overflow:hidden;transition:background .22s,border-color .22s,transform .28s cubic-bezier(.16,1,.3,1)}
+.gc:hover{background:var(--card-h);border-color:var(--brd2);transform:translateY(-4px)}
+.gc-top{position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.gc:hover .gc-top{transform:scaleX(1)}
+.gc-shine{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--shine),transparent)}
+
+/* ALINE — DM Sans */
+.aline{display:inline-flex;align-items:center;gap:8px;font-family:var(--inter);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--a)}
+.aline::before{content:'';width:16px;height:1px;background:var(--a)}
+
+/* PILL — DM Sans */
+.pill{font-family:var(--inter);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 13px;border-radius:99px;background:rgba(255,82,0,.1);border:1px solid rgba(255,82,0,.25);color:var(--a);display:inline-block}
+
+/* STAT */
+.stat-n{font-family:var(--syne);font-size:clamp(34px,3.8vw,54px);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--a),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* DOT LIST */
+.dl{display:flex;flex-direction:column;gap:10px}
+.di{display:flex;align-items:baseline;gap:10px}
+.di::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--a);flex-shrink:0;margin-top:8px}
+.di span{font-family:var(--inter);font-size:clamp(14px,1.35vw,17px);color:var(--txt2);line-height:1.6}
+.di span strong{color:var(--txt);font-weight:600}
+
+/* FLOW DIAGRAM */
+.flow{display:flex;align-items:center;gap:0;margin:20px 0;flex-shrink:0}
+.flow-node{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1}
+.flow-box{padding:12px 14px;border-radius:10px;border:1px solid var(--brd);background:var(--card);text-align:center;width:100%;transition:.2s}
+.flow-box-ico{display:flex;justify-content:center;margin-bottom:6px}
+.flow-box-t{font-family:var(--inter);font-size:clamp(11px,1.1vw,13px);font-weight:600;line-height:1.2;color:var(--txt)}
+.flow-box-s{font-family:var(--inter);font-size:8px;font-weight:500;letter-spacing:.09em;color:var(--txt3);margin-top:2px}
+.flow-arr{display:flex;align-items:center;flex-shrink:0;padding:0 3px;color:rgba(255,82,0,.4)}
+
+/* ICON helpers — all SVG icons share these */
+.ico{display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ico svg{stroke-linecap:round;stroke-linejoin:round}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* ── MOBILE ── */
+@media (max-width:768px){
+  html,body{cursor:auto;overflow:hidden}
+  #cur,#cur2{display:none}
+  #theme-btn{top:12px;right:12px;width:34px;height:34px}
+  #al{left:6px}#ar{right:6px}
+  .arr{width:32px;height:32px;opacity:.6}
+  #ctr{bottom:14px;right:14px;font-size:10px}
+  #prog{height:3px}
+
+  /* slides scroll vertically on mobile */
+  .slide{overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .inn{
+    padding:52px 20px 80px;
+    height:auto;
+    min-height:100%;
+    justify-content:flex-start
+  }
+
+  /* headings */
+  .h1{font-size:clamp(42px,11vw,72px);line-height:.9}
+  .htitle{font-size:clamp(24px,6.5vw,38px);line-height:1}
+  .hphase{font-size:clamp(18px,5vw,28px)}
+  .hcard{font-size:clamp(14px,3.8vw,18px)}
+
+  /* body */
+  .body-xl{font-size:clamp(14px,3.8vw,17px)}
+  .body-l{font-size:clamp(13px,3.5vw,16px)}
+  .body-m{font-size:clamp(13px,3.3vw,15px)}
+  .body-s{font-size:clamp(12px,3vw,14px)}
+
+  /* all multi-col grids → single column */
+  [style*="grid-template-columns"]{grid-template-columns:1fr!important}
+
+  /* flow diagram: horizontal scroll */
+  .flow{
+    overflow-x:auto;padding-bottom:10px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;margin:14px 0
+  }
+  .flow::-webkit-scrollbar{display:none}
+  .flow-node{min-width:86px}
+
+  /* hide large decorative bg numbers and text */
+  [style*="clamp(180px"],[style*="clamp(160px"]{display:none!important}
+
+  /* stag */
+  .stag{margin-bottom:10px}
+  .stag-l{font-size:9px;letter-spacing:.1em}
+
+  /* gap reductions */
+  [style*="gap:14px"]{gap:10px!important}
+  [style*="gap:16px"]{gap:10px!important}
+  [style*="gap:18px"]{gap:10px!important}
+  [style*="gap:20px"]{gap:12px!important}
+  [style*="gap:24px"]{gap:12px!important}
+
+  /* card padding */
+  .gc{border-radius:10px}
+
+  /* hero bottom padding override */
+  .inn[style*="padding-bottom:120px"]{padding-bottom:80px!important;justify-content:flex-end}
+
+  /* closing slide */
+  .inn[style*="align-items:center"]{padding-top:80px}
+
+  /* section number decoratives — hide orbs on mobile too */
+  .orb{display:none}
+}
+
+@media (max-width:480px){
+  .inn{padding:48px 16px 72px}
+  .htitle{font-size:clamp(20px,7.5vw,30px)}
+  .hphase{font-size:clamp(16px,5.5vw,22px)}
+  .flow-node{min-width:74px}
+}
+@keyframes shim{to{background-position:200% center}}
+.shim{background:linear-gradient(105deg,var(--txt) 45%,rgba(255,82,0,.7) 55%,var(--txt) 65%);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shim 8s linear infinite}
+.shim-teal{background:linear-gradient(105deg,var(--txt) 45%,rgba(45,212,191,.75) 55%,var(--txt) 65%);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shim 8s linear infinite}
+.shim-yellow{background:linear-gradient(105deg,var(--txt) 45%,rgba(250,204,21,.75) 55%,var(--txt) 65%);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shim 8s linear infinite}
+.shim-green{background:linear-gradient(105deg,var(--txt) 45%,rgba(34,197,94,.75) 55%,var(--txt) 65%);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shim 8s linear infinite}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur2"></div>
+<canvas id="mesh"></canvas>
+<div id="prog"></div>
+<div id="ctr"><b id="cn">01</b> / 13</div>
+
+<!-- THEME TOGGLE -->
+<button id="theme-btn" aria-label="Cambiar tema">
+  <svg id="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  <svg id="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+
+<button class="arr" id="al"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+<button class="arr" id="ar"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+
+<div id="stage">
+
+<!-- ═══ 1 HERO ═══ -->
+<div class="slide on" id="s0">
+  <div class="orb" style="width:440px;height:440px;border-color:rgba(255,82,0,.08);top:-90px;right:-90px;animation-duration:30s"></div>
+  <div class="orb" style="width:260px;height:260px;border-color:rgba(255,82,0,.15);top:10px;right:10px;animation-duration:18s;animation-direction:reverse"></div>
+  <div class="orb" style="width:130px;height:130px;border-color:rgba(255,82,0,.24);top:115px;right:115px;animation-duration:11s"></div>
+  <div class="fdot" style="top:18%;right:36%;opacity:.6;animation-duration:3.2s;animation-delay:-.8s"></div>
+  <div class="fdot" style="top:58%;right:24%;opacity:.4;animation-duration:4s;animation-delay:-1.5s"></div>
+  <div class="inn" style="justify-content:flex-end;padding-bottom:120px">
+    <div class="aline" style="margin-bottom:28px">S.I. — WCS/WES · Intralogística</div>
+    <div class="h1">El sistema<br/>que mueve<br/><em>tu pedido</em></div>
+    <p class="body-xl" style="margin-top:28px;max-width:580px">Desde que el paquete entra en la cinta hasta que cae en el chute correcto, un SI toma miles de decisiones en milisegundos.</p>
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-55%);font-family:var(--syne);font-size:clamp(160px,20vw,300px);font-weight:800;line-height:1;color:rgba(255,82,0,.04);letter-spacing:-.04em;pointer-events:none;user-select:none">WCS</div>
+  </div>
+</div>
+
+<!-- ═══ 2 QUÉ ES ═══ -->
+<div class="slide" id="s1">
+  <div class="orb" style="width:360px;height:360px;border-color:rgba(255,82,0,.07);top:-60px;left:-60px;animation-duration:32s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">01</span><span class="stag-bar"></span><span class="stag-l">Contexto del sistema</span></div>
+    <div class="htitle shim" style="margin-bottom:24px">¿Qué es el WCS/WES?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="gc" style="padding:24px 26px">
+          <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+          <div class="gc-shine"></div>
+          <div class="mlbl" style="color:var(--a);margin-bottom:10px">WCS — Warehouse Control System</div>
+          <div class="hcard" style="margin-bottom:10px">El sistema que controla</div>
+          <p class="body-m">Habla directamente con las máquinas. Envía señales a los PLCs, activa los sorters, mueve las cintas. Opera en tiempo real con latencia de milisegundos.</p>
+        </div>
+        <div class="gc" style="padding:24px 26px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
+          <div class="mlbl" style="color:#3B82F6;margin-bottom:10px">WES — Warehouse Execution System</div>
+          <div class="hcard" style="margin-bottom:10px">El sistema que decide</div>
+          <p class="body-m">Recibe órdenes del WMS, asigna destinos, gestiona prioridades y excepciones. Es el cerebro que da instrucciones al WCS sobre qué hacer con cada paquete.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="gc" style="padding:24px 26px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#2DD4BF,transparent)"></div>
+          <div class="mlbl" style="color:#2DD4BF;margin-bottom:10px">Posición en la organización</div>
+          <div class="hcard" style="margin-bottom:10px">Entre el ERP y las máquinas</div>
+          <p class="body-m">El ERP planifica, el WMS gestiona el inventario, el WES/WCS ejecuta. Sin ellos, el almacén automatizado es hardware sin cerebro.</p>
+        </div>
+        <div class="gc" style="padding:24px 26px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+          <div class="mlbl" style="color:#22C55E;margin-bottom:10px">La clave del sistema</div>
+          <div class="hcard" style="margin-bottom:10px">Velocidad + precisión + trazabilidad</div>
+          <p class="body-m">Cada paquete, en cada instalación, en tiempo real. Miles de decisiones por hora que no admiten error ni retraso.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3 FLUJO COMPLETO ═══ -->
+<div class="slide" id="s2">
+  <div class="orb" style="width:300px;height:300px;border-color:rgba(167,139,250,.1);top:-50px;right:-50px;animation-duration:26s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">02</span><span class="stag-bar"></span><span class="stag-l">El proceso completo</span></div>
+    <div class="htitle shim" style="margin-bottom:10px">El viaje de un paquete</div>
+    <p class="body-l" style="margin-bottom:24px;max-width:700px">En un almacén automatizado moderno, cada paquete recorre el mismo camino en segundos. El WCS/WES orquesta cada etapa.</p>
+    <div class="flow">
+      <div class="flow-node">
+        <div class="flow-box" style="border-color:rgba(255,82,0,.35);background:rgba(255,82,0,.07)">
+          <div class="flow-box-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <div class="flow-box-t" style="color:var(--a)">Inducción</div>
+          <div class="flow-box-s">Paquete entra</div>
+        </div>
+      </div>
+      <div class="flow-arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,82,0,.45)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-node">
+        <div class="flow-box" style="border-color:rgba(45,212,191,.35);background:rgba(45,212,191,.07)">
+          <div class="flow-box-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+          <div class="flow-box-t" style="color:#2DD4BF">Escáner láser</div>
+          <div class="flow-box-s">Código de barras</div>
+        </div>
+      </div>
+      <div class="flow-arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,82,0,.45)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-node">
+        <div class="flow-box" style="border-color:rgba(59,130,246,.35);background:rgba(59,130,246,.07)">
+          <div class="flow-box-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <div class="flow-box-t" style="color:#3B82F6">OCR / Visión</div>
+          <div class="flow-box-s">Etiqueta, texto</div>
+        </div>
+      </div>
+      <div class="flow-arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,82,0,.45)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-node">
+        <div class="flow-box" style="border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.07)">
+          <div class="flow-box-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+          <div class="flow-box-t" style="color:#A78BFA">DWS</div>
+          <div class="flow-box-s">Tamaño y peso</div>
+        </div>
+      </div>
+      <div class="flow-arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,82,0,.45)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-node">
+        <div class="flow-box" style="border-color:rgba(250,204,21,.35);background:rgba(250,204,21,.07)">
+          <div class="flow-box-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"/><path d="M12 8v4l3 3"/></svg></div>
+          <div class="flow-box-t" style="color:#FACC15">WES decide</div>
+          <div class="flow-box-s">&lt;100ms</div>
+        </div>
+      </div>
+      <div class="flow-arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,82,0,.45)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-node">
+        <div class="flow-box" style="border-color:rgba(255,82,0,.35);background:rgba(255,82,0,.07)">
+          <div class="flow-box-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+          <div class="flow-box-t" style="color:var(--a)">Sorter actúa</div>
+          <div class="flow-box-s">Clasificación</div>
+        </div>
+      </div>
+      <div class="flow-arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,82,0,.45)" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-node">
+        <div class="flow-box" style="border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.07)">
+          <div class="flow-box-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="flow-box-t" style="color:#22C55E">Destino</div>
+          <div class="flow-box-s">Confirmado</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px">
+      <div class="gc" style="padding:16px 18px"><div class="gc-shine"></div><div class="stat-n" style="font-size:clamp(26px,2.8vw,40px)">18.000</div><p class="body-s" style="margin-top:4px">paquetes/hora en un CROSSORTER</p></div>
+      <div class="gc" style="padding:16px 18px"><div class="gc-shine"></div><div class="stat-n" style="font-size:clamp(26px,2.8vw,40px)">&lt;100ms</div><p class="body-s" style="margin-top:4px">de lectura a clasificación</p></div>
+      <div class="gc" style="padding:16px 18px"><div class="gc-shine"></div><div class="stat-n" style="font-size:clamp(26px,2.8vw,40px)">99.9%</div><p class="body-s" style="margin-top:4px">de disponibilidad 24/7</p></div>
+      <div class="gc" style="padding:16px 18px"><div class="gc-shine"></div><div class="stat-n" style="font-size:clamp(26px,2.8vw,40px)">0</div><p class="body-s" style="margin-top:4px">intervenciones humanas por paquete</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 4 FASE 1: INDUCCIÓN ═══ -->
+<div class="slide" id="s3">
+  <div class="orb" style="width:340px;height:340px;border-color:rgba(255,82,0,.09);top:-60px;right:-60px;animation-duration:24s"></div>
+  <div class="fdot" style="top:22%;right:30%;opacity:.5;animation-duration:3.5s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">03</span><span class="stag-bar"></span><span class="stag-l">Fase 1 de 6</span></div>
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">01</div>
+    <div class="hphase" style="color:var(--a);margin-bottom:6px">Inducción y Conveyor</div>
+    <div class="htitle shim" style="margin-bottom:20px">El paquete entra al sistema</div>
+    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p class="body-l">El paquete llega a la <strong style="color:var(--txt)">zona de inducción</strong> — el punto de entrada al conveyor automatizado. Aquí comienza su viaje dentro del sistema.</p>
+        <div class="dl">
+          <div class="di"><span>El operario o un robot coloca el paquete sobre la cinta inductora, que regula el espaciado entre paquetes.</span></div>
+          <div class="di"><span>El WCS monitoriza la <strong>velocidad y separación</strong> en tiempo real para evitar acumulaciones.</span></div>
+          <div class="di"><span>El paquete queda <strong>registrado como "en vuelo"</strong> en la base de datos en memoria del sistema.</span></div>
+          <div class="di"><span>A partir de aquí, el sistema sabe que existe un objeto físico y empieza a <strong>esperar los datos de los escáneres</strong>.</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="gc" style="padding:22px 24px">
+          <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+          <div class="mlbl" style="margin-bottom:8px">El conveyor</div>
+          <div class="hcard" style="margin-bottom:8px">Red de cintas transportadoras</div>
+          <p class="body-s">Una infraestructura de kilómetros de cintas, curvas y desviadores que conecta todas las zonas del almacén. El WCS controla cada tramo individualmente.</p>
+        </div>
+        <div class="gc" style="padding:22px 24px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#2DD4BF,transparent)"></div>
+          <div class="mlbl" style="color:#2DD4BF;margin-bottom:8px">Singulación</div>
+          <div class="hcard" style="margin-bottom:8px">Un paquete, un carril</div>
+          <p class="body-s">Las cintas de singulación separan los paquetes uno a uno. Sin este paso, los escáneres recibirían información solapada y el sistema no podría identificar cada objeto de forma individual.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 5 FASE 2: ESCÁNERES ═══ -->
+<div class="slide" id="s4">
+  <div class="orb" style="width:320px;height:320px;border-color:rgba(45,212,191,.09);top:-50px;left:-50px;animation-duration:28s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">04</span><span class="stag-bar"></span><span class="stag-l">Fase 2 de 6</span></div>
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">02</div>
+    <div class="hphase" style="color:#2DD4BF;margin-bottom:6px">Túnel de Escáneres</div>
+    <div class="htitle shim-teal" style="margin-bottom:20px">El sistema lo lee todo</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px">
+      <div class="gc" style="padding:22px 22px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#2DD4BF,transparent)"></div>
+        <div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(45,212,191,.1);margin-bottom:12px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+        </div>
+        <div class="hcard" style="color:#2DD4BF;margin-bottom:8px">Escáner láser</div>
+        <p class="body-m" style="margin-bottom:10px">Arrays de láseres rodean la cinta en todas las caras del paquete. Leen el código de barras o QR desde cualquier ángulo, en movimiento, en menos de 50ms.</p>
+        <p class="body-s">→ Obtiene el ID único del paquete</p>
+      </div>
+      <div class="gc" style="padding:22px 22px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
+        <div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(59,130,246,.1);margin-bottom:12px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <div class="hcard" style="color:#3B82F6;margin-bottom:8px">Cámara OCR / Visión</div>
+        <p class="body-m" style="margin-bottom:10px">Cámaras de alta velocidad con visión artificial. Leen texto impreso, etiquetas de dirección dañadas o parcialmente cubiertas, y reconocen el tipo de embalaje.</p>
+        <p class="body-s">→ Dirección de entrega, transportista, servicio</p>
+      </div>
+      <div class="gc" style="padding:22px 22px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
+        <div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(167,139,250,.1);margin-bottom:12px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="hcard" style="color:#A78BFA;margin-bottom:8px">DWS — Dimensionado</div>
+        <p class="body-m" style="margin-bottom:10px">En un único paso, sensores láser miden largo, ancho y alto; una báscula integrada registra el peso exacto. Todo mientras el paquete sigue en movimiento a velocidad de línea.</p>
+        <p class="body-s">→ Dimensiones, peso, volumen, clase de tarifa</p>
+      </div>
+    </div>
+    <div style="margin-top:13px;padding:16px 24px;border-radius:12px;background:rgba(255,82,0,.06);border:1px solid rgba(255,82,0,.2);display:flex;align-items:center;gap:16px">
+      <div class="ico" style="flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <p class="body-m">En menos de <strong style="color:var(--a)">200 milisegundos</strong>, el sistema tiene el perfil completo del paquete: <strong style="color:var(--txt)">quién es, qué contiene, cuánto pesa y cuánto ocupa</strong>. Eso es lo que permite al WES tomar la decisión de routing.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 6 FASE 3: IDENTIFICACIÓN ═══ -->
+<div class="slide" id="s5">
+  <div class="orb" style="width:300px;height:300px;border-color:rgba(250,204,21,.08);top:-40px;right:-40px;animation-duration:30s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">05</span><span class="stag-bar"></span><span class="stag-l">Fase 3 de 6</span></div>
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">03</div>
+    <div class="hphase" style="color:#FACC15;margin-bottom:6px">Identificación y Consulta</div>
+    <div class="htitle shim-yellow" style="margin-bottom:20px">¿Qué sabe ya el sistema?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p class="body-l">Con el ID del paquete en mano, el WES hace una <strong style="color:var(--txt)">consulta instantánea</strong> a la base de datos de órdenes activas. En milisegundos, tiene la imagen completa.</p>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:14px 18px;border-radius:10px;background:var(--card);border:1px solid var(--brd);display:flex;gap:14px;align-items:center">
+            <div class="ico" style="width:36px;height:36px;border-radius:8px;background:rgba(255,82,0,.08);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <div><div style="font-family:var(--inter);font-size:clamp(13px,1.3vw,15px);font-weight:700;margin-bottom:2px;color:var(--txt)">ID único del paquete</div><p class="body-s">Código de barras, QR o RFID. La llave que conecta el objeto físico con su orden digital.</p></div>
+          </div>
+          <div style="padding:14px 18px;border-radius:10px;background:var(--card);border:1px solid var(--brd);display:flex;gap:14px;align-items:center">
+            <div class="ico" style="width:36px;height:36px;border-radius:8px;background:rgba(59,130,246,.08);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div style="font-family:var(--inter);font-size:clamp(13px,1.3vw,15px);font-weight:700;margin-bottom:2px;color:var(--txt)">Destino de entrega</div><p class="body-s">Código postal, zona geográfica, transportista asignado, tipo de servicio (mismo día, 24h, económico).</p></div>
+          </div>
+          <div style="padding:14px 18px;border-radius:10px;background:var(--card);border:1px solid var(--brd);display:flex;gap:14px;align-items:center">
+            <div class="ico" style="width:36px;height:36px;border-radius:8px;background:rgba(250,204,21,.08);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div><div style="font-family:var(--inter);font-size:clamp(13px,1.3vw,15px);font-weight:700;margin-bottom:2px;color:var(--txt)">Restricciones y prioridad</div><p class="body-s">Frágil, temperatura controlada, urgente, cliente VIP. Reglas que condicionarán la decisión de routing.</p></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="gc" style="padding:22px 24px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#FACC15,transparent)"></div>
+          <div class="mlbl" style="color:#FACC15;margin-bottom:8px">Qué pasa si no hay lectura</div>
+          <div class="hcard" style="margin-bottom:8px">No-Read → Excepción</div>
+          <p class="body-m">Si el sistema no puede identificar el paquete, no lo envía a un destino aleatorio. Lo desvía automáticamente a la <strong style="color:var(--txt)">línea de excepciones</strong>, donde un operario lo gestiona manualmente.</p>
+        </div>
+        <div class="gc" style="padding:22px 24px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+          <div class="mlbl" style="color:#22C55E;margin-bottom:8px">La consolidación</div>
+          <div class="hcard" style="margin-bottom:8px">Un objeto, un perfil completo</div>
+          <p class="body-m">Laser + OCR + DWS + BBDD de órdenes = un único objeto digital con todo lo necesario para decidir. Este es el input que recibe el motor de routing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 7 FASE 4: DECISIÓN ═══ -->
+<div class="slide" id="s6">
+  <div class="orb" style="width:340px;height:340px;border-color:rgba(250,204,21,.08);top:-50px;left:-50px;animation-duration:28s;animation-direction:reverse"></div>
+  <div class="fdot" style="top:20%;left:62%;opacity:.5;animation-duration:3.5s"></div>
+  <div class="fdot" style="top:70%;left:58%;opacity:.35;animation-duration:4s;animation-delay:-1s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">06</span><span class="stag-bar"></span><span class="stag-l">Fase 4 de 6</span></div>
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">04</div>
+    <div class="hphase" style="color:#FACC15;margin-bottom:6px">Motor de Decisión</div>
+    <div class="htitle shim-yellow" style="margin-bottom:20px">El WES decide en &lt;100ms</div>
+    <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:18px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="gc" style="padding:16px 18px;display:flex;gap:14px;align-items:flex-start">
+          <span style="font-family:var(--inter);font-size:13px;font-weight:700;color:var(--a);opacity:.7;flex-shrink:0;padding-top:2px">01</span>
+          <div><div style="font-family:var(--inter);font-size:clamp(14px,1.4vw,16px);font-weight:700;margin-bottom:4px;color:var(--txt)">Consulta el motor de reglas</div><p class="body-s">Tablas de destinos por código postal, contratos por transportista, prioridad de servicio, restricciones del producto.</p></div>
+        </div>
+        <div class="gc" style="padding:16px 18px;display:flex;gap:14px;align-items:flex-start">
+          <span style="font-family:var(--inter);font-size:13px;font-weight:700;color:var(--a);opacity:.7;flex-shrink:0;padding-top:2px">02</span>
+          <div><div style="font-family:var(--inter);font-size:clamp(14px,1.4vw,16px);font-weight:700;margin-bottom:4px;color:var(--txt)">Evalúa el estado del sorter</div><p class="body-s">¿Qué chutes están libres? ¿Cuáles están llenos? ¿Hay congestión en algún punto del flujo? Todo en tiempo real.</p></div>
+        </div>
+        <div class="gc" style="padding:16px 18px;display:flex;gap:14px;align-items:flex-start">
+          <span style="font-family:var(--inter);font-size:13px;font-weight:700;color:var(--a);opacity:.7;flex-shrink:0;padding-top:2px">03</span>
+          <div><div style="font-family:var(--inter);font-size:clamp(14px,1.4vw,16px);font-weight:700;margin-bottom:4px;color:var(--txt)">Calcula la ruta óptima</div><p class="body-s">Elige el chute de destino. Calcula el tiempo de tránsito y la posición exacta en el sorter donde se activará la clasificación.</p></div>
+        </div>
+        <div class="gc" style="padding:16px 18px;display:flex;gap:14px;align-items:flex-start">
+          <span style="font-family:var(--inter);font-size:13px;font-weight:700;color:var(--a);opacity:.7;flex-shrink:0;padding-top:2px">04</span>
+          <div><div style="font-family:var(--inter);font-size:clamp(14px,1.4vw,16px);font-weight:700;margin-bottom:4px;color:var(--txt)">Ordena al WCS actuar</div><p class="body-s">El WES envía la instrucción al WCS: "cuando este paquete llegue a la posición X, activa el mecanismo Y". El WCS ejecuta.</p></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="gc" style="padding:22px 24px">
+          <div class="gc-shine"></div>
+          <div class="mlbl" style="margin-bottom:8px">Latencia total del ciclo</div>
+          <div class="stat-n">&lt;100ms</div>
+          <p class="body-s" style="margin-top:6px">De la lectura del escáner a la activación del mecanismo del sorter. En sistemas de alta gama, menos de 50ms.</p>
+        </div>
+        <div class="gc" style="padding:22px 24px">
+          <div class="mlbl" style="margin-bottom:8px">Procesamiento</div>
+          <div class="stat-n" style="font-size:clamp(24px,2.6vw,36px)">En memoria</div>
+          <p class="body-s" style="margin-top:6px">Los datos activos viven en RAM. Sin acceso a disco en el camino crítico. Redis o VoltDB como motor de datos en tiempo real.</p>
+        </div>
+        <div class="gc" style="padding:16px 20px;display:flex;gap:12px;align-items:flex-start">
+          <div class="ico" style="width:34px;height:34px;border-radius:8px;background:rgba(255,82,0,.08);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+          <div><div style="font-family:var(--inter);font-size:clamp(13px,1.3vw,15px);font-weight:700;margin-bottom:3px;color:var(--txt)">Reglas configurables en caliente</div><p class="body-s">Las reglas de routing se actualizan sin parar el sistema. Un transportista cambia de chute → el cambio se aplica en segundos para todos los paquetes futuros.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 8 FASE 5: SORTER ═══ -->
+<div class="slide" id="s7">
+  <div class="orb" style="width:360px;height:360px;border-color:rgba(255,82,0,.07);top:-60px;right:-60px;animation-duration:26s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">07</span><span class="stag-bar"></span><span class="stag-l">Fase 5 de 6</span></div>
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">05</div>
+    <div class="hphase" style="color:var(--a);margin-bottom:6px">El Sorter Clasifica</div>
+    <div class="htitle shim" style="margin-bottom:20px">La máquina que ejecuta la decisión</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px">
+      <div class="gc" style="padding:22px 22px;display:flex;flex-direction:column;gap:12px">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(255,82,0,.1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <div><div style="font-family:var(--syne);font-size:clamp(20px,2.2vw,28px);font-weight:800;color:var(--a);letter-spacing:-.02em">CROSSORTER</div><div class="mlbl" style="color:var(--a);opacity:.6;margin-top:2px">Cross-Belt Sorter</div></div>
+        <p class="body-m">Bucle de carriers, cada uno con una minicinta propia. El WCS <strong style="color:var(--txt)">activa la minicinta de ese carrier concreto</strong> en el instante exacto calculado. El paquete cae lateralmente al chute de destino.</p>
+        <div class="dl" style="gap:7px">
+          <div class="di"><span>Hasta <strong>18.000 carriers/hora</strong></span></div>
+          <div class="di"><span>Desde sobres de 1mm hasta cajas de 1.5m</span></div>
+          <div class="di"><span>Control independiente por carrier</span></div>
+        </div>
+      </div>
+      <div class="gc" style="padding:22px 22px;display:flex;flex-direction:column;gap:12px">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2DD4BF,transparent)"></div>
+        <div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(45,212,191,.1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div><div style="font-family:var(--syne);font-size:clamp(20px,2.2vw,28px);font-weight:800;color:#2DD4BF;letter-spacing:-.02em">POSISORTER</div><div class="mlbl" style="color:#2DD4BF;opacity:.6;margin-top:2px">Sliding Shoe Sorter</div></div>
+        <p class="body-m">Superficie de zapatas deslizantes. El WCS calcula el <strong style="color:var(--txt)">punto exacto donde activar las zapatas</strong> para desviar el paquete diagonalmente, con un margen de error de milímetros.</p>
+        <div class="dl" style="gap:7px">
+          <div class="di"><span>Más de <strong>10.000 cajas/hora</strong></span></div>
+          <div class="di"><span>Ideal para cajas y formatos regulares</span></div>
+          <div class="di"><span>Integración sencilla, perfil bajo</span></div>
+        </div>
+      </div>
+      <div class="gc" style="padding:22px 22px;display:flex;flex-direction:column;gap:12px">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#A78BFA,transparent)"></div>
+        <div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(167,139,250,.1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div><div style="font-family:var(--syne);font-size:clamp(20px,2.2vw,28px);font-weight:800;color:#A78BFA;letter-spacing:-.02em">LOOPSORTER</div><div class="mlbl" style="color:#A78BFA;opacity:.6;margin-top:2px">Tilt-Tray Sorter</div></div>
+        <p class="body-m">Bucle continuo con bandejas inclinables. El WCS <strong style="color:var(--txt)">asigna cada paquete a una bandeja</strong> y calcula el ángulo y el momento exacto de la inclinación para que caiga en el chute correcto.</p>
+        <div class="dl" style="gap:7px">
+          <div class="di"><span>Frágiles, bolsas y formas irregulares</span></div>
+          <div class="di"><span>Fashion, aeropuertos, farmacia</span></div>
+          <div class="di"><span>Precisión milimétrica, sin daño</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 9 FASE 6: DESTINO ═══ -->
+<div class="slide" id="s8">
+  <div class="orb" style="width:300px;height:300px;border-color:rgba(34,197,94,.08);top:-50px;right:-50px;animation-duration:28s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">08</span><span class="stag-bar"></span><span class="stag-l">Fase 6 de 6</span></div>
+    <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(34,197,94,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">06</div>
+    <div class="hphase" style="color:#22C55E;margin-bottom:6px">Destino Confirmado</div>
+    <div class="htitle shim-green" style="margin-bottom:20px">El paquete llega. El sistema lo sabe.</div>
+    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p class="body-l">El paquete cae en el chute de destino. Pero el proceso no termina ahí — el sistema cierra el ciclo con <strong style="color:var(--txt)">trazabilidad completa</strong> e informa a todos los actores.</p>
+        <div class="dl">
+          <div class="di"><span>Un sensor en el chute <strong>confirma la llegada física</strong> del paquete. El WCS registra el evento en el log inmutable.</span></div>
+          <div class="di"><span>El WES actualiza el estado de la orden: "clasificado correctamente". <strong>Notificación automática al WMS</strong> y al ERP.</span></div>
+          <div class="di"><span>El transportista asignado recibe la <strong>confirmación de que el paquete está en su chute</strong>, listo para la carga.</span></div>
+          <div class="di"><span>Todo el recorrido queda en el <strong>log de eventos inmutable</strong>: trazabilidad completa para auditorías e incidencias.</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="gc" style="padding:22px 24px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+          <div class="mlbl" style="color:#22C55E;margin-bottom:8px">Ciclo completo</div>
+          <div class="hcard" style="margin-bottom:8px">De entrada a destino</div>
+          <p class="body-m">Inducción → Escáneres → Identificación → Decisión → Sorter → Confirmación. Todo el ciclo ocurre en <strong style="color:#22C55E">menos de 30 segundos</strong> para un paquete estándar, sin intervención humana.</p>
+        </div>
+        <div class="gc" style="padding:22px 24px">
+          <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+          <div class="mlbl" style="margin-bottom:8px">Qué pasa si algo falla</div>
+          <div class="hcard" style="margin-bottom:8px">Gestión de excepciones</div>
+          <p class="body-m">Chute lleno, error de lectura, paquete dañado — el sistema detecta la anomalía, desvía el paquete a la línea de excepciones y alerta al operario. <strong style="color:var(--txt)">Nunca un paquete perdido.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 10 EMPRESA ═══ -->
+<div class="slide" id="s9">
+  <div class="orb" style="width:420px;height:420px;border-color:rgba(255,82,0,.07);top:50%;right:-80px;transform:translateY(-50%);animation-duration:34s"></div>
+  <div class="orb" style="width:240px;height:240px;border-color:rgba(255,82,0,.12);top:50%;right:60px;transform:translateY(-50%);animation-duration:20s;animation-direction:reverse"></div>
+  <div class="fdot" style="top:28%;right:26%;opacity:.6;animation-duration:3s"></div>
+  <div class="fdot" style="top:64%;right:34%;opacity:.4;animation-duration:4s;animation-delay:-.5s"></div>
+  <div class="inn" style="gap:20px">
+    <div class="stag"><span class="stag-n">09</span><span class="stag-bar"></span><span class="stag-l">El proveedor del sistema</span></div>
+    <div style="font-family:var(--syne);font-size:clamp(32px,3.8vw,56px);font-weight:800;line-height:.92;letter-spacing:-.025em" class="shim">Quién construye estos sistemas</div>
+    <p class="body-l" style="max-width:640px">Un sector dominado por un puñado de empresas especializadas que combinan hardware propio con el software WCS/WES para ofrecer una solución integrada.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;width:100%">
+      <div class="gc" style="padding:26px 28px">
+        <div class="gc-shine"></div>
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="mlbl" style="margin-bottom:10px">Qué diferencia a un proveedor de referencia</div>
+        <div class="hcard" style="margin-bottom:10px">Hardware + Software + Integración</div>
+        <p class="body-m">Los líderes del sector diseñan el sorter físico, desarrollan el WCS/WES que lo controla y lo integran con el WMS del cliente. Todo bajo la misma arquitectura y soporte.</p>
+      </div>
+      <div class="gc" style="padding:26px 28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#2DD4BF,transparent)"></div>
+        <div class="mlbl" style="color:#2DD4BF;margin-bottom:10px">Plataforma unificada</div>
+        <div class="hcard" style="margin-bottom:10px">WMS + WCS + WES en una sola interfaz</div>
+        <p class="body-m">El operario ve todo el almacén desde un único panel. No hay silos entre sistemas ni latencia de integración entre capas. Una única fuente de verdad para toda la operación.</p>
+      </div>
+      <div class="gc" style="padding:26px 28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
+        <div class="mlbl" style="color:#A78BFA;margin-bottom:10px">Escala global</div>
+        <div class="hcard" style="margin-bottom:10px">E-commerce · Parcel · Aeropuertos</div>
+        <p class="body-m">Los grandes instaladores operan en más de 100 países, con referencias en Amazon, DHL, Zalando y los principales aeropuertos de Europa y Asia.</p>
+      </div>
+    </div>
+    <p class="body-s">Principales actores: Vanderlande · Dematic · Beumer Group · Honeywell Intelligrated · Knapp</p>
+  </div>
+</div>
+
+<!-- ═══ 11 IA Y FUTURO ═══ -->
+<div class="slide" id="s10">
+  <div class="orb" style="width:380px;height:380px;border-color:rgba(34,197,94,.07);top:-60px;right:-60px;animation-duration:26s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">10</span><span class="stag-bar"></span><span class="stag-l">Evolución del sistema</span></div>
+    <div class="htitle shim" style="margin-bottom:20px">IA: cuando el sistema<br/>deja de reaccionar y empieza a anticipar</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:13px">
+      <div class="gc" style="padding:22px">
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(255,82,0,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <div class="hcard" style="color:var(--a);margin-bottom:8px">Routing dinámico con ML</div>
+        <p class="body-m">El sistema aprende los patrones de volumen y ajusta el routing en tiempo real para equilibrar la carga entre chutes y evitar cuellos de botella antes de que ocurran.</p>
+      </div>
+      <div class="gc" style="padding:22px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
+        <div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(59,130,246,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="hcard" style="color:#3B82F6;margin-bottom:8px">Mantenimiento predictivo</div>
+        <p class="body-m">Sensores en cada motor y rodamiento alimentan modelos de desgaste. El sistema predice el fallo horas antes y planifica la intervención en la ventana de menor impacto.</p>
+      </div>
+      <div class="gc" style="padding:22px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
+        <div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(167,139,250,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="hcard" style="color:#A78BFA;margin-bottom:8px">Digital Twin</div>
+        <p class="body-m">Réplica digital del almacén completo. Permite simular cambios de configuración, nuevos flujos o picos de demanda antes de implementarlos en el sistema real.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px">
+      <div class="gc" style="padding:22px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+        <div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(34,197,94,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="hcard" style="color:#22C55E;margin-bottom:8px">Robótica colaborativa</div>
+        <p class="body-m">AMRs coordinados por el WES como parte del mismo flujo. Robot y cinta son indistinguibles para el sistema — un único flujo continuo y orquestado.</p>
+      </div>
+      <div class="gc" style="padding:22px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#FACC15,transparent)"></div>
+        <div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(250,204,21,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="hcard" style="color:#FACC15;margin-bottom:8px">IA Generativa</div>
+        <p class="body-m">El operario pregunta en lenguaje natural: "¿por qué hay cola en el chute 12?". El sistema analiza los logs, identifica la causa y propone una acción correctiva.</p>
+      </div>
+      <div class="gc" style="padding:22px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#F472B6,transparent)"></div>
+        <div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(244,114,182,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12M12 12l-3 3M12 12l3 3M12 2v4M4.93 4.93l2.83 2.83M19.07 4.93l-2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M19.07 19.07l-2.83-2.83"/></svg></div>
+        <div class="hcard" style="color:#F472B6;margin-bottom:8px">WES autónomo</div>
+        <p class="body-m">El sistema ajusta sus propias reglas de routing sin intervención humana. Aprende del comportamiento histórico y optimiza para los KPIs configurados.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 12 CASOS REALES ═══ -->
+<div class="slide" id="s11">
+  <div class="orb" style="width:280px;height:280px;border-color:rgba(255,82,0,.07);bottom:-40px;right:-40px;animation-duration:28s"></div>
+  <div class="inn">
+    <div class="stag"><span class="stag-n">11</span><span class="stag-bar"></span><span class="stag-l">Impacto real del sistema</span></div>
+    <div class="htitle shim" style="margin-bottom:20px">El WCS/WES en acción</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px">
+      <div class="gc" style="padding:26px 28px;display:flex;flex-direction:column;gap:12px">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,82,0,.3),transparent)"></div>
+        <div class="mlbl" style="color:var(--a)">E-Commerce · Parcel</div>
+        <div style="font-family:var(--syne);font-size:clamp(30px,3.2vw,46px);font-weight:800;line-height:.9;letter-spacing:-.025em">Amazon</div>
+        <p class="body-m">Sorting de alta velocidad en fulfillment centers europeos. El WCS gestiona millones de paquetes al día con routing dinámico por destino postal y prioridad de entrega.</p>
+        <div style="display:flex;align-items:center;gap:9px;padding:10px 16px;border-radius:9px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.16)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg><span style="font-family:var(--inter);font-size:clamp(12px,1.1vw,14px);font-weight:600;color:#22C55E">−35% en tiempo de ciclo picking → expedición</span></div>
+      </div>
+      <div class="gc" style="padding:26px 28px;display:flex;flex-direction:column;gap:12px">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,82,0,.3),transparent)"></div>
+        <div class="mlbl" style="color:var(--a)">Paquetería · Mensajería</div>
+        <div style="font-family:var(--syne);font-size:clamp(30px,3.2vw,46px);font-weight:800;line-height:.9;letter-spacing:-.025em">DHL Group</div>
+        <p class="body-m">75 instalaciones en Alemania. CROSSORTER en hubs principales con integración directa al WMS global de DHL para sincronización en tiempo real entre centros.</p>
+        <div style="display:flex;align-items:center;gap:9px;padding:10px 16px;border-radius:9px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.16)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg><span style="font-family:var(--inter);font-size:clamp(12px,1.1vw,14px);font-weight:600;color:#22C55E">75 hubs operados con un único ecosistema de software</span></div>
+      </div>
+      <div class="gc" style="padding:26px 28px;display:flex;flex-direction:column;gap:12px">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,82,0,.3),transparent)"></div>
+        <div class="mlbl" style="color:var(--a)">Fashion · E-Commerce</div>
+        <div style="font-family:var(--syne);font-size:clamp(30px,3.2vw,46px);font-weight:800;line-height:.9;letter-spacing:-.025em">Zalando</div>
+        <p class="body-m">CROSSORTER para cajas y AIRTRAX para prendas en colgador. El WES gestiona la secuenciación y consolidación por pedido para cumplir el SLA de entrega same-day.</p>
+        <div style="display:flex;align-items:center;gap:9px;padding:10px 16px;border-radius:9px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.16)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg><span style="font-family:var(--inter);font-size:clamp(12px,1.1vw,14px);font-weight:600;color:#22C55E">Fulfillment same-day activo en múltiples centros</span></div>
+      </div>
+      <div class="gc" style="padding:26px 28px;display:flex;flex-direction:column;gap:12px">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,82,0,.3),transparent)"></div>
+        <div class="mlbl" style="color:var(--a)">Paquetería · Express</div>
+        <div style="font-family:var(--syne);font-size:clamp(30px,3.2vw,46px);font-weight:800;line-height:.9;letter-spacing:-.025em">UPS</div>
+        <p class="body-m">Implantación de CROSSORTER en hubs de clasificación europeos. El WES gestiona la priorización por nivel de servicio —Next Day, Standard, Economy— en tiempo real desde las reglas del contrato.</p>
+        <div style="display:flex;align-items:center;gap:9px;padding:10px 16px;border-radius:9px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.16)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg><span style="font-family:var(--inter);font-size:clamp(12px,1.1vw,14px);font-weight:600;color:#22C55E">Clasificación multiservicio en un único flujo automatizado</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 13 CIERRE ═══ -->
+<div class="slide" id="s12">
+  <div class="orb" style="width:620px;height:620px;border-color:rgba(255,82,0,.05);top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:42s"></div>
+  <div class="orb" style="width:380px;height:380px;border-color:rgba(255,82,0,.1);top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:24s;animation-direction:reverse"></div>
+  <div class="fdot" style="top:28%;left:30%;opacity:.6;animation-duration:3.2s"></div>
+  <div class="fdot" style="top:60%;left:68%;opacity:.5;animation-duration:4s;animation-delay:-.8s"></div>
+  <div class="inn" style="align-items:center;text-align:center;padding-top:60px;padding-bottom:60px;justify-content:center">
+    <div class="aline" style="margin-bottom:22px;justify-content:center">Sistema de Información · Conclusión</div>
+    <div style="font-family:var(--syne);font-size:clamp(32px,6.5vw,100px);font-weight:800;letter-spacing:-.03em;line-height:1;background:linear-gradient(160deg,var(--txt) 35%,rgba(255,82,0,.5) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:14px 0;max-width:880px;white-space:normal">El sistema que no ves <em style="font-style:italic">lo mueve todo</em></div>
+    <div style="width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--a),transparent);margin:22px auto"></div>
+    <p class="body-xl" style="max-width:560px">Detrás de cada pedido que llega a tiempo hay un sistema que, en milisegundos y millones de veces al día, lee, decide, actúa y confirma. Sin margen para el error.</p>
+  </div>
+</div>
+
+</div><!-- /stage -->
+
+<script>
+/* MESH */
+(function(){
+  const c=document.getElementById('mesh'),ctx=c.getContext('2d');
+  const pts=[{x:.18,y:.28,vx:.00028,vy:.00018,r:'rgba(255,82,0,.17)',s:500},{x:.82,y:.18,vx:-.00035,vy:.00025,r:'rgba(255,40,0,.13)',s:420},{x:.5,y:.72,vx:.00018,vy:-.00032,r:'rgba(255,110,0,.11)',s:540},{x:.08,y:.82,vx:.00042,vy:-.00016,r:'rgba(80,25,0,.14)',s:390},{x:.92,y:.58,vx:-.00026,vy:.00038,r:'rgba(255,55,0,.09)',s:460}];
+  let dark=true;
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight}
+  function draw(){
+    const W=c.width,H=c.height,th=document.documentElement.getAttribute('data-theme');
+    dark=th==='dark';
+    ctx.fillStyle=dark?'#05050A':'#FAF7F3';ctx.fillRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>1)p.vx*=-1;if(p.y<0||p.y>1)p.vy*=-1;
+      const scale=dark?1:1.2;
+      const col=dark?p.r:p.r.replace(/[\d.]+\)$/,v=>(Math.min(parseFloat(v)*1.3,.16))+')');
+      const g=ctx.createRadialGradient(p.x*W,p.y*H,0,p.x*W,p.y*H,p.s*scale);
+      g.addColorStop(0,col);g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    });
+    requestAnimationFrame(draw)
+  }
+  resize();draw();window.addEventListener('resize',resize);
+})();
+
+/* CURSOR */
+const C=document.getElementById('cur'),C2=document.getElementById('cur2');let mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+'px';C.style.top=my+'px'});
+setInterval(()=>{C2.style.left=mx+'px';C2.style.top=my+'px'},80);
+document.querySelectorAll('.gc,.arr,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{C2.style.transform='translate(-50%,-50%) scale(1.7)';C2.style.borderColor='rgba(255,82,0,.65)'});
+  el.addEventListener('mouseleave',()=>{C2.style.transform='translate(-50%,-50%) scale(1)';C2.style.borderColor='rgba(255,82,0,.4)'});
+});
+
+/* THEME TOGGLE */
+const html=document.documentElement;
+document.getElementById('theme-btn').onclick=()=>{
+  html.setAttribute('data-theme',html.getAttribute('data-theme')==='dark'?'light':'dark');
+};
+
+/* NAV */
+const slides=document.querySelectorAll('.slide'),prog=document.getElementById('prog'),cn=document.getElementById('cn');
+const N=slides.length;let cur=0;
+function go(n){if(n<0||n>=N||n===cur)return;slides[cur].classList.remove('on');cur=n;slides[cur].classList.add('on');prog.style.width=(cur/(N-1)*100)+'%';cn.textContent=String(cur+1).padStart(2,'0')}
+document.addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(cur+1)}if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(cur-1)}});
+document.getElementById('al').onclick=()=>go(cur-1);document.getElementById('ar').onclick=()=>go(cur+1);prog.style.width='0%';
+
+/* TOUCH SWIPE */
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{
+  const dx=tx-e.changedTouches[0].clientX;
+  if(Math.abs(dx)>50){dx>0?go(cur+1):go(cur-1)}
+},{passive:true});
+</script>
+</body>
+</html>
