@@ -23,12 +23,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 #prog{position:fixed;top:0;left:0;height:2px;z-index:300;background:linear-gradient(90deg,var(--a3),var(--a),var(--a2));box-shadow:0 0 14px rgba(255,82,0,.55);transition:width .5s cubic-bezier(.4,0,.2,1)}
 #ctr{position:fixed;bottom:20px;right:26px;z-index:300;font-family:var(--inter);font-size:11px;font-weight:500;letter-spacing:.12em;color:var(--txt3)}
 #ctr b{color:var(--txt2)}
-#theme-btn{position:fixed;top:20px;right:24px;z-index:300;width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;cursor:none;transition:.2s;opacity:.7}
+#theme-btn{position:fixed;top:20px;right:24px;z-index:300;width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;cursor:none;transition:.2s;opacity:.7}
 #theme-btn:hover{background:var(--card-h);border-color:var(--brd2);opacity:1}
 #theme-btn svg{stroke:var(--txt);fill:none;width:16px;height:16px}
 [data-theme="dark"] #icon-moon{display:block}[data-theme="dark"] #icon-sun{display:none}
 [data-theme="light"] #icon-moon{display:none}[data-theme="light"] #icon-sun{display:block}
-.arr{position:fixed;top:50%;transform:translateY(-50%);z-index:300;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;cursor:none;opacity:.4;transition:.2s}
+.arr{position:fixed;top:50%;transform:translateY(-50%);z-index:300;width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;cursor:none;opacity:.4;transition:.2s}
 .arr:hover{background:rgba(255,82,0,.12);border-color:rgba(255,82,0,.4);opacity:1}
 .arr svg{stroke:var(--txt)}
 #al{left:12px}#ar{right:12px}
@@ -47,12 +47,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .h1 em{font-style:normal;background:linear-gradient(130deg,var(--a),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .htitle{font-family:var(--syne);font-size:clamp(36px,4.2vw,62px);font-weight:800;line-height:.9;letter-spacing:-.025em;flex-shrink:0}
 .hphase{font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,2.8vw,42px);font-weight:500;font-style:italic;line-height:1;flex-shrink:0}
-.hcard{font-family:var(--syne);font-size:clamp(16px,1.7vw,21px);font-weight:700;line-height:1.15}
+.hcard{font-family:var(--syne);font-size:clamp(19px,2vw,26px);font-weight:700;line-height:1.15}
 .hlead{font-family:var(--syne);font-size:clamp(22px,2.4vw,34px);font-weight:700;line-height:1.1;letter-spacing:-.015em;flex-shrink:0}
 /* BODY */
-.body-l{font-family:var(--inter);font-size:clamp(15px,1.5vw,19px);color:var(--txt2);line-height:1.7}
-.body-m{font-family:var(--inter);font-size:clamp(14px,1.3vw,16px);color:var(--txt2);line-height:1.6}
-.body-s{font-family:var(--inter);font-size:clamp(12px,1.1vw,14px);color:var(--txt3);line-height:1.55}
+.body-l{font-family:var(--inter);font-size:clamp(17px,1.7vw,22px);color:var(--txt2);line-height:1.7}
+.body-m{font-family:var(--inter);font-size:clamp(15px,1.5vw,19px);color:var(--txt2);line-height:1.65}
+.body-s{font-family:var(--inter);font-size:clamp(14px,1.3vw,17px);color:var(--txt3);line-height:1.6}
 /* CARDS */
 .gc{background:var(--card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--brd);border-radius:14px;position:relative;overflow:hidden;transition:background .22s,border-color .22s,transform .28s cubic-bezier(.16,1,.3,1)}
 .gc:hover{background:var(--card-h);border-color:var(--brd2);transform:translateY(-4px)}
@@ -60,11 +60,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .gc:hover .gc-top{transform:scaleX(1)}
 .gc-shine{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--shine),transparent)}
 /* UTILS */
-.aline{display:inline-flex;align-items:center;gap:8px;font-family:var(--inter);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--a)}
+.aline{display:inline-flex;align-items:center;gap:8px;font-family:var(--inter);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--a)}
 .aline::before{content:'';width:16px;height:1px;background:var(--a)}
-.mlbl{font-family:var(--inter);font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3)}
+.mlbl{font-family:var(--inter);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3)}
 .stat-n{font-family:var(--syne);font-size:clamp(38px,4.5vw,64px);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--a),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.pill{font-family:var(--inter);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border-radius:99px;background:rgba(255,82,0,.1);border:1px solid rgba(255,82,0,.25);color:var(--a);display:inline-block}
+.pill{font-family:var(--inter);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border-radius:99px;background:rgba(255,82,0,.12);border:1px solid rgba(255,82,0,.25);color:var(--a);display:inline-block}
 .ico{display:flex;align-items:center;justify-content:center;flex-shrink:0}
 /* BULLET minimal */
 .bl-row{display:flex;align-items:center;gap:12px}
@@ -74,8 +74,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .flow-node{display:flex;flex-direction:column;align-items:center;flex:1}
 .flow-box{padding:12px 10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);text-align:center;width:100%}
 .flow-box-ico{display:flex;justify-content:center;margin-bottom:5px}
-.flow-box-t{font-family:var(--inter);font-size:clamp(10px,1vw,12px);font-weight:700;line-height:1.2}
-.flow-box-s{font-family:var(--inter);font-size:8px;color:var(--txt3);margin-top:2px}
+.flow-box-t{font-family:var(--inter);font-size:clamp(12px,1.2vw,15px);font-weight:700;line-height:1.2}
+.flow-box-s{font-family:var(--inter);font-size:10px;color:var(--txt3);margin-top:2px}
 .flow-arr{display:flex;align-items:center;flex-shrink:0;padding:0 2px}
 /* SHIMMER variants */
 @keyframes shim{to{background-position:200% center}}
@@ -147,39 +147,28 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
   <div class="orb" style="width:360px;height:360px;border-color:rgba(255,82,0,.07);top:-60px;left:-60px;animation-duration:32s"></div>
   <div class="inn">
     <div class="stag"><span class="stag-n">01</span><span class="stag-bar"></span><span class="stag-l">El ecosistema de software</span></div>
-    <div class="htitle shim" style="margin-bottom:28px">La jerarquía de control</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
-      <div class="gc" style="padding:28px 26px">
+    <div class="htitle shim" style="margin-bottom:24px">La jerarquía de control</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div class="gc" style="padding:28px">
         <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
-        <div class="gc-shine"></div>
-        <div class="mlbl" style="color:#3B82F6;margin-bottom:14px">WMS</div>
-        <div class="hcard" style="margin-bottom:14px;font-size:clamp(20px,2vw,26px)">El cerebro<br/>administrativo</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="bl-row"><div class="bl-dot" style="background:#3B82F6"></div><span class="body-s">Horas / días</span></div>
-          <div class="bl-row"><div class="bl-dot" style="background:#3B82F6"></div><span class="body-s">Pedidos, SKUs, inventario</span></div>
-          <div class="bl-row"><div class="bl-dot" style="background:#3B82F6"></div><span class="body-s">Sabe qué mover. No cómo.</span></div>
-        </div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="mlbl" style="color:#3B82F6;margin-bottom:10px">WMS — Estratégico</div>
+        <div class="hcard" style="margin-bottom:10px">El cerebro administrativo</div>
+        <p class="body-s">Escala de horas. Pedidos, inventario, SKUs. Sabe qué mover, no cómo.</p>
       </div>
-      <div class="gc" style="padding:28px 26px">
+      <div class="gc" style="padding:28px">
         <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
-        <div class="gc-shine" style="background:linear-gradient(90deg,transparent,rgba(255,82,0,.4),transparent)"></div>
-        <div class="mlbl" style="color:var(--a);margin-bottom:14px">WES</div>
-        <div class="hcard" style="margin-bottom:14px;font-size:clamp(20px,2vw,26px)">El sistema<br/>nervioso</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="bl-row"><div class="bl-dot"></div><span class="body-s">Segundos / tiempo real</span></div>
-          <div class="bl-row"><div class="bl-dot"></div><span class="body-s">Load balancing de rampas</span></div>
-          <div class="bl-row"><div class="bl-dot"></div><span class="body-s">Gestiona excepciones</span></div>
-        </div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,82,0,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">WES — Ejecución</div>
+        <div class="hcard" style="margin-bottom:10px">El sistema nervioso</div>
+        <p class="body-s">Escala de segundos. Load balancing en tiempo real. Gestiona excepciones.</p>
       </div>
-      <div class="gc" style="padding:28px 26px">
+      <div class="gc" style="padding:28px">
         <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
-        <div class="mlbl" style="color:#A78BFA;margin-bottom:14px">WCS</div>
-        <div class="hcard" style="margin-bottom:14px;font-size:clamp(20px,2vw,26px)">Los reflejos<br/>operativos</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="bl-row"><div class="bl-dot" style="background:#A78BFA"></div><span class="body-s">Milisegundos</span></div>
-          <div class="bl-row"><div class="bl-dot" style="background:#A78BFA"></div><span class="body-s">Habla directamente con PLCs</span></div>
-          <div class="bl-row"><div class="bl-dot" style="background:#A78BFA"></div><span class="body-s">Encoder + shift register</span></div>
-        </div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(167,139,250,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/></svg></div>
+        <div class="mlbl" style="color:#A78BFA;margin-bottom:10px">WCS — Control</div>
+        <div class="hcard" style="margin-bottom:10px">Los reflejos operativos</div>
+        <p class="body-s">Escala de milisegundos. Habla con PLCs, motores y sensores directamente.</p>
       </div>
     </div>
   </div>
@@ -191,7 +180,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
   <div class="inn">
     <div class="stag"><span class="stag-n">02</span><span class="stag-bar"></span><span class="stag-l">El proceso físico</span></div>
     <div class="htitle shim" style="margin-bottom:20px">Así funciona un sorter</div>
-    <div style="background:var(--card);border:1px solid var(--brd);border-radius:16px;padding:24px 28px;margin-bottom:14px;overflow:hidden">
+    <div style="background:var(--card);border:1px solid var(--brd);border-radius:16px;padding:24px 28px;margin-bottom:18px;overflow:hidden">
       <svg viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
         <defs>
           <style>
@@ -305,25 +294,28 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
     <div class="stag"><span class="stag-n">04</span><span class="stag-bar"></span><span class="stag-l">Fase 1 de 7</span></div>
     <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">01</div>
     <div class="hphase" style="color:var(--a);margin-bottom:8px">Inducción, Gapping y Singulación</div>
-    <div class="htitle shim" style="margin-bottom:28px">Convertir cajas en datos discretos</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
-      <div class="gc" style="padding:24px">
+    <div class="htitle shim" style="margin-bottom:24px">Convertir cajas en datos discretos</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div class="gc" style="padding:28px">
         <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
-        <div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(255,82,0,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg></div>
-        <div class="hcard" style="margin-bottom:10px">VFD + Fotocélulas</div>
-        <div class="body-s">Cintas independientes controladas por variadores de frecuencia crean la "ventana virtual" entre paquetes.</div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,82,0,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">VFD + Fotocélulas</div>
+        <div class="hcard" style="margin-bottom:10px">Ventana virtual</div>
+        <p class="body-s">Cintas independientes crean el espacio mínimo entre paquetes.</p>
       </div>
-      <div class="gc" style="padding:24px">
+      <div class="gc" style="padding:28px">
         <div class="gc-top" style="background:linear-gradient(90deg,#2DD4BF,transparent)"></div>
-        <div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(45,212,191,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg></div>
-        <div class="hcard" style="margin-bottom:10px">Singulación</div>
-        <div class="body-s">Un paquete a la vez en el punto de escaneo. Sin esto los escáneres no pueden identificar objetos individuales.</div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(45,212,191,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg></div>
+        <div class="mlbl" style="color:#2DD4BF;margin-bottom:10px">Singulación</div>
+        <div class="hcard" style="margin-bottom:10px">Un paquete a la vez</div>
+        <p class="body-s">Garantiza lectura individual en el punto de escaneo.</p>
       </div>
-      <div class="gc" style="padding:24px">
+      <div class="gc" style="padding:28px">
         <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
-        <div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(167,139,250,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-        <div class="hcard" style="margin-bottom:10px">ID temporal</div>
-        <div class="body-s">El sistema asigna un ID de posición calculado por encoder antes de saber qué paquete es.</div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(167,139,250,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="mlbl" style="color:#A78BFA;margin-bottom:10px">ID temporal</div>
+        <div class="hcard" style="margin-bottom:10px">Posición antes de identidad</div>
+        <p class="body-s">El encoder asigna posición antes de saber qué paquete es.</p>
       </div>
     </div>
   </div>
@@ -336,15 +328,29 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
     <div class="stag"><span class="stag-n">05</span><span class="stag-bar"></span><span class="stag-l">Fase 2 de 7</span></div>
     <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">02</div>
     <div class="hphase" style="color:#2DD4BF;margin-bottom:8px">Fusión de sensores</div>
-    <div class="htitle shim-teal" style="margin-bottom:28px">El túnel de escaneo</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px">
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,#2DD4BF,transparent)"></div><div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(45,212,191,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div><div class="hcard" style="color:#2DD4BF;margin-bottom:8px">Escáner láser</div><div class="body-s">Lectura 360° en menos de 50ms. Protocolo EtherNet/IP al PLC cada 2–10ms.</div></div>
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div><div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(59,130,246,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="hcard" style="color:#3B82F6;margin-bottom:8px">Visión AI + OCR</div><div class="body-s">CNN infiere identidad en etiquetas dañadas. Reduce no-lecturas del <strong style="color:var(--txt)">5% → &lt;1%.</strong></div></div>
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div><div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(167,139,250,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div><div class="hcard" style="color:#A78BFA;margin-bottom:8px">DWS + Balanza</div><div class="body-s">L×A×H + peso en tránsito. Valida si el paquete es físicamente apto para la rampa de destino.</div></div>
-    </div>
-    <div style="padding:14px 22px;border-radius:12px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.18);display:flex;align-items:center;gap:14px">
-      <div class="ico" style="flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-      <span class="body-s" style="color:var(--txt2)">En menos de <strong style="color:#2DD4BF">200ms</strong> el sistema tiene el perfil completo: quién es, qué pesa y cuánto ocupa.</span>
+    <div class="htitle shim-teal" style="margin-bottom:24px">El túnel de escaneo</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#2DD4BF,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(45,212,191,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+        <div class="mlbl" style="color:#2DD4BF;margin-bottom:10px">Escáner láser</div>
+        <div class="hcard" style="margin-bottom:10px">Lectura 360° en 50ms</div>
+        <p class="body-s">Código 1D/2D desde cualquier ángulo en movimiento.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <div class="mlbl" style="color:#3B82F6;margin-bottom:10px">Visión AI + OCR</div>
+        <div class="hcard" style="margin-bottom:10px">5% → &lt;1% no-lecturas</div>
+        <p class="body-s">CNN infiere identidad en etiquetas dañadas o mojadas.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(167,139,250,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+        <div class="mlbl" style="color:#A78BFA;margin-bottom:10px">DWS + Balanza</div>
+        <div class="hcard" style="margin-bottom:10px">Perfil completo en 200ms</div>
+        <p class="body-s">L×A×H + peso. Valida compatibilidad con la rampa de destino.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -356,15 +362,29 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
     <div class="stag"><span class="stag-n">06</span><span class="stag-bar"></span><span class="stag-l">Fase 3 de 7</span></div>
     <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">03</div>
     <div class="hphase" style="color:#3B82F6;margin-bottom:8px">Las máquinas se hablan entre sí</div>
-    <div class="htitle shim-blue" style="margin-bottom:22px">Cómo el escáner le habla al sorter</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px">
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,var(--txt3),transparent)"></div><div class="mlbl" style="margin-bottom:10px;color:var(--txt3)">Antes — RS-232</div><div class="hcard" style="margin-bottom:10px">Cadena de texto por cable serie</div><p class="body-s">Latencia variable según la longitud del mensaje. A alta velocidad, el paquete ya ha pasado el punto de desvío antes de que llegue la instrucción.</p></div>
-      <div class="gc" style="padding:24px;border-color:rgba(59,130,246,.3)"><div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div><div class="mlbl" style="color:#3B82F6;margin-bottom:10px">Hoy — Ethernet Industrial</div><div class="hcard" style="margin-bottom:10px">Memoria compartida, lectura cada 2–10ms</div><p class="body-s">El escáner deposita el código en una zona de memoria. El controlador la consulta constantemente — como un buzón que se revisa miles de veces por segundo.</p></div>
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div><div class="mlbl" style="color:#A78BFA;margin-bottom:10px">Más allá del paquete</div><div class="hcard" style="margin-bottom:10px">Las máquinas reportan su salud</div><p class="body-s">Motores, cintas y sensores envían también su temperatura, velocidad y nivel de desgaste. El sistema sabe si algo va a fallar antes de que falle.</p></div>
-    </div>
-    <div style="margin-top:13px;padding:14px 22px;border-radius:12px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.18);display:flex;align-items:center;gap:14px">
-      <div class="ico" style="flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-      <p class="body-s" style="color:var(--txt2)">A 18.000 paquetes por hora, un retraso de 50ms significa que el paquete ya ha pasado el punto de desvío. La comunicación tiene que ser <strong style="color:#3B82F6">determinística</strong>, no aproximada.</p>
+    <div class="htitle shim-blue" style="margin-bottom:24px">Comunicación M2M</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--txt3),transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.05);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="mlbl" style="margin-bottom:10px">Antes — RS-232</div>
+        <div class="hcard" style="margin-bottom:10px">Cadena de texto serie</div>
+        <p class="body-s">Latencia variable. El paquete pasa el desvío antes de recibir instrucción.</p>
+      </div>
+      <div class="gc" style="padding:28px;border-color:rgba(59,130,246,.25)">
+        <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+        <div class="mlbl" style="color:#3B82F6;margin-bottom:10px">Hoy — Ethernet Industrial</div>
+        <div class="hcard" style="margin-bottom:10px">Memoria compartida · 2–10ms</div>
+        <p class="body-s">El controlador consulta el resultado del escáner miles de veces por segundo.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(167,139,250,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="mlbl" style="color:#A78BFA;margin-bottom:10px">Más allá del paquete</div>
+        <div class="hcard" style="margin-bottom:10px">Las máquinas reportan su salud</div>
+        <p class="body-s">Temperatura, velocidad y desgaste — predice fallos antes de que ocurran.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -376,15 +396,29 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
     <div class="stag"><span class="stag-n">07</span><span class="stag-bar"></span><span class="stag-l">Fase 4 de 7</span></div>
     <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">04</div>
     <div class="hphase" style="color:#A78BFA;margin-bottom:8px">Seguimiento en tiempo real</div>
-    <div class="htitle shim-purple" style="margin-bottom:22px">¿Cómo sabe el sistema dónde está cada paquete?</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px">
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div><div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(167,139,250,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="hcard" style="margin-bottom:10px">Como el odómetro de un coche</div><p class="body-s">Un sensor en el eje de la cinta cuenta cuánto ha girado. Sabe exactamente cuántos centímetros ha avanzado el paquete desde que fue escaneado — con precisión de 0,5mm.</p></div>
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div><div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(255,82,0,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div><div class="hcard" style="margin-bottom:10px">La cinta como tablero de ajedrez</div><p class="body-s">Cada paquete ocupa una casilla virtual de 10cm. Se va moviendo al siguiente cuadro con cada avance. Al llegar a la casilla del desvío, el sistema activa el mecanismo.</p></div>
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div><div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(34,197,94,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="hcard" style="margin-bottom:10px">Cientos de paquetes a la vez</div><p class="body-s">El sistema rastrea simultáneamente todos los paquetes en la cinta, cada uno con su destino, sin confundirlos aunque estén a centímetros de distancia.</p></div>
-    </div>
-    <div style="margin-top:13px;padding:14px 22px;border-radius:12px;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.18);display:flex;align-items:center;gap:14px">
-      <div class="ico" style="flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-      <p class="body-s" style="color:var(--txt2)">Si la cinta tiene deslizamiento mecánico, el conteo se desincroniza y el paquete puede caer en el chute equivocado. <strong style="color:#A78BFA">La tensión de la cinta es crítica</strong> para la precisión del sistema.</p>
+    <div class="htitle shim-purple" style="margin-bottom:24px">¿Dónde está cada paquete?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(167,139,250,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="mlbl" style="color:#A78BFA;margin-bottom:10px">El odómetro</div>
+        <div class="hcard" style="margin-bottom:10px">0,5mm por pulso</div>
+        <p class="body-s">Sensor en el eje cuenta el avance de la cinta con precisión milimétrica.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,82,0,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">El tablero de ajedrez</div>
+        <div class="hcard" style="margin-bottom:10px">Casillas virtuales de 10cm</div>
+        <p class="body-s">Cada paquete ocupa una casilla. Al llegar al desvío, se activa el mecanismo.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(34,197,94,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="mlbl" style="color:#22C55E;margin-bottom:10px">Simultáneo</div>
+        <div class="hcard" style="margin-bottom:10px">Cientos a la vez</div>
+        <p class="body-s">Todos los paquetes de la cinta rastreados en paralelo con su destino asignado.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -396,65 +430,65 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
     <div class="stag"><span class="stag-n">08</span><span class="stag-bar"></span><span class="stag-l">Fase 5 de 7</span></div>
     <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">05</div>
     <div class="hphase" style="color:#FACC15;margin-bottom:8px">Lógica de decisión</div>
-    <div class="htitle shim-yellow" style="margin-bottom:28px">El WES decide en &lt;100ms</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="gc" style="padding:16px 20px;display:flex;gap:14px;align-items:center"><span style="font-family:var(--inter);font-size:14px;font-weight:800;color:var(--a);flex-shrink:0;opacity:.7">01</span><div><div style="font-family:var(--inter);font-size:clamp(13px,1.3vw,15px);font-weight:700;color:var(--txt)">Motor de reglas</div><p class="body-s">Código postal · transportista · prioridad · restricciones</p></div></div>
-        <div class="gc" style="padding:16px 20px;display:flex;gap:14px;align-items:center"><span style="font-family:var(--inter);font-size:14px;font-weight:800;color:var(--a);flex-shrink:0;opacity:.7">02</span><div><div style="font-family:var(--inter);font-size:clamp(13px,1.3vw,15px);font-weight:700;color:var(--txt)">Estado de rampas en tiempo real</div><p class="body-s">Libre · llena · bloqueada · carga actual</p></div></div>
-        <div class="gc" style="padding:16px 20px;display:flex;gap:14px;align-items:center"><span style="font-family:var(--inter);font-size:14px;font-weight:800;color:var(--a);flex-shrink:0;opacity:.7">03</span><div><div style="font-family:var(--inter);font-size:clamp(13px,1.3vw,15px);font-weight:700;color:var(--txt)">Validación física DWS</div><p class="body-s">¿El paquete cabe físicamente en el chute?</p></div></div>
-        <div class="gc" style="padding:16px 20px;display:flex;gap:14px;align-items:center"><span style="font-family:var(--inter);font-size:14px;font-weight:800;color:var(--a);flex-shrink:0;opacity:.7">04</span><div><div style="font-family:var(--inter);font-size:clamp(13px,1.3vw,15px);font-weight:700;color:var(--txt)">Instrucción al WCS</div><p class="body-s">Posición + momento exacto → encoder activa desvío</p></div></div>
+    <div class="htitle shim-yellow" style="margin-bottom:24px">El WES decide en &lt;100ms</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#FACC15,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(250,204,21,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="mlbl" style="color:#FACC15;margin-bottom:10px">Por región</div>
+        <div class="hcard">Código postal</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="gc" style="padding:22px 24px"><div class="gc-shine"></div><div class="mlbl" style="margin-bottom:8px">Latencia total</div><div class="stat-n">&lt;100ms</div><p class="body-s" style="margin-top:6px">Alta gama: &lt;50ms</p></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div class="gc" style="padding:16px 18px"><div class="mlbl" style="margin-bottom:6px">Por destino</div><p class="body-s">Código postal / zona</p></div>
-          <div class="gc" style="padding:16px 18px"><div class="mlbl" style="margin-bottom:6px">Por carrier</div><p class="body-s">FedEx · UPS · DHL</p></div>
-          <div class="gc" style="padding:16px 18px"><div class="mlbl" style="margin-bottom:6px">Por canal</div><p class="body-s">Online vs tienda física</p></div>
-          <div class="gc" style="padding:16px 18px"><div class="mlbl" style="margin-bottom:6px">FILO</div><p class="body-s">Secuencia ruta conductor</p></div>
-        </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="mlbl" style="color:#3B82F6;margin-bottom:10px">Por transportista</div>
+        <div class="hcard">FedEx · UPS · DHL</div>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,82,0,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">Por ola de pedidos</div>
+        <div class="hcard">Mismo cliente</div>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(34,197,94,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <div class="mlbl" style="color:#22C55E;margin-bottom:10px">Secuencia de ruta</div>
+        <div class="hcard">Orden de entrega</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 10 SORTER -->
+<!-- 10 SORTER ACTÚA -->
 <div class="slide" id="s9">
   <div class="orb" style="width:360px;height:360px;border-color:rgba(255,82,0,.07);top:-60px;right:-60px;animation-duration:26s"></div>
   <div class="inn">
     <div class="stag"><span class="stag-n">09</span><span class="stag-bar"></span><span class="stag-l">Fase 6 de 7</span></div>
     <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(255,82,0,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">06</div>
     <div class="hphase" style="color:var(--a);margin-bottom:8px">El hardware ejecuta</div>
-    <div class="htitle shim" style="margin-bottom:28px">Tipos de clasificadores</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
-      <div class="gc" style="padding:24px;display:flex;flex-direction:column;gap:14px">
+    <div class="htitle shim" style="margin-bottom:24px">Tipos de clasificadores</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div class="gc" style="padding:28px">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--a),transparent)"></div>
-        <div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(255,82,0,.1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
-        <div><div style="font-family:var(--syne);font-size:clamp(22px,2.4vw,30px);font-weight:800;color:var(--a);letter-spacing:-.02em">CROSSORTER</div><div class="mlbl" style="color:var(--a);opacity:.6;margin-top:2px">Cross-Belt Sorter</div></div>
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="bl-row"><div class="bl-dot"></div><span class="body-s"><strong style="color:var(--txt)">18.000 carriers/hora</strong></span></div>
-          <div class="bl-row"><div class="bl-dot"></div><span class="body-s">1mm → 1,5m cualquier formato</span></div>
-          <div class="bl-row"><div class="bl-dot"></div><span class="body-s">WCS activa cada carrier de forma independiente</span></div>
-        </div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,82,0,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">Cross-Belt</div>
+        <div class="hcard" style="color:var(--a);margin-bottom:10px">CROSSORTER</div>
+        <p class="body-s">18.000/h · 1mm → 1,5m · máxima versatilidad de formato</p>
       </div>
-      <div class="gc" style="padding:24px;display:flex;flex-direction:column;gap:14px">
+      <div class="gc" style="padding:28px">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2DD4BF,transparent)"></div>
-        <div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(45,212,191,.1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-        <div><div style="font-family:var(--syne);font-size:clamp(22px,2.4vw,30px);font-weight:800;color:#2DD4BF;letter-spacing:-.02em">POSISORTER</div><div class="mlbl" style="color:#2DD4BF;opacity:.6;margin-top:2px">Sliding Shoe Sorter</div></div>
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="bl-row"><div class="bl-dot" style="background:#2DD4BF"></div><span class="body-s"><strong style="color:var(--txt)">10.000 cajas/hora</strong></span></div>
-          <div class="bl-row"><div class="bl-dot" style="background:#2DD4BF"></div><span class="body-s">Cajas y formatos regulares</span></div>
-          <div class="bl-row"><div class="bl-dot" style="background:#2DD4BF"></div><span class="body-s">Zapatas deslizantes — error milimétrico</span></div>
-        </div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(45,212,191,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div class="mlbl" style="color:#2DD4BF;margin-bottom:10px">Sliding Shoe</div>
+        <div class="hcard" style="color:#2DD4BF;margin-bottom:10px">POSISORTER</div>
+        <p class="body-s">10.000/h · cajas regulares · zapatas deslizantes</p>
       </div>
-      <div class="gc" style="padding:24px;display:flex;flex-direction:column;gap:14px">
+      <div class="gc" style="padding:28px">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#A78BFA,transparent)"></div>
-        <div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(167,139,250,.1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-        <div><div style="font-family:var(--syne);font-size:clamp(22px,2.4vw,30px);font-weight:800;color:#A78BFA;letter-spacing:-.02em">LOOPSORTER</div><div class="mlbl" style="color:#A78BFA;opacity:.6;margin-top:2px">Tilt-Tray Sorter</div></div>
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="bl-row"><div class="bl-dot" style="background:#A78BFA"></div><span class="body-s">Frágiles, bolsas, irregulares</span></div>
-          <div class="bl-row"><div class="bl-dot" style="background:#A78BFA"></div><span class="body-s">Fashion · aeropuertos · farmacia</span></div>
-          <div class="bl-row"><div class="bl-dot" style="background:#A78BFA"></div><span class="body-s">Bandeja inclinable → caída exacta</span></div>
-        </div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(167,139,250,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="mlbl" style="color:#A78BFA;margin-bottom:10px">Tilt-Tray</div>
+        <div class="hcard" style="color:#A78BFA;margin-bottom:10px">LOOPSORTER</div>
+        <p class="body-s">Frágiles · bolsas · irregulares · fashion · aeropuertos</p>
       </div>
     </div>
   </div>
@@ -467,17 +501,39 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
     <div class="stag"><span class="stag-n">10</span><span class="stag-bar"></span><span class="stag-l">Fase 7 de 7</span></div>
     <div style="position:absolute;right:80px;top:50%;transform:translateY(-50%);font-family:var(--syne);font-size:clamp(180px,22vw,320px);font-weight:800;line-height:1;color:rgba(34,197,94,.05);letter-spacing:-.04em;pointer-events:none;user-select:none">07</div>
     <div class="hphase" style="color:#22C55E;margin-bottom:8px">Gestión de lo inesperado</div>
-    <div class="htitle shim-green" style="margin-bottom:28px">Excepciones y recirculación</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="gc" style="padding:20px 22px;display:flex;gap:14px;align-items:flex-start"><div class="ico" style="width:36px;height:36px;border-radius:8px;background:rgba(250,204,21,.1);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div><div style="font-family:var(--inter);font-weight:700;font-size:clamp(13px,1.3vw,15px);color:var(--txt);margin-bottom:3px">No-Read</div><p class="body-s">Escáner no identifica → rampa de recirculación. El flujo no se detiene.</p></div></div>
-        <div class="gc" style="padding:20px 22px;display:flex;gap:14px;align-items:flex-start"><div class="ico" style="width:36px;height:36px;border-radius:8px;background:rgba(255,82,0,.1);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div><div><div style="font-family:var(--inter);font-weight:700;font-size:clamp(13px,1.3vw,15px);color:var(--txt);margin-bottom:3px">Destino inválido</div><p class="body-s">WMS devuelve error → estación corrección manual. Sin bloqueo de línea.</p></div></div>
-        <div class="gc" style="padding:20px 22px;display:flex;gap:14px;align-items:flex-start"><div class="ico" style="width:36px;height:36px;border-radius:8px;background:rgba(59,130,246,.1);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div><div style="font-family:var(--inter);font-weight:700;font-size:clamp(13px,1.3vw,15px);color:var(--txt);margin-bottom:3px">Anomalía física (IA)</div><p class="body-s">Cuerdas sueltas, solapamiento de cajas → detectado antes de zona de alta velocidad.</p></div></div>
-        <div class="gc" style="padding:20px 22px;display:flex;gap:14px;align-items:flex-start"><div class="ico" style="width:36px;height:36px;border-radius:8px;background:rgba(34,197,94,.1);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div><div style="font-family:var(--inter);font-weight:700;font-size:clamp(13px,1.3vw,15px);color:var(--txt);margin-bottom:3px">Peso real ≠ peso WMS</div><p class="body-s">Error de picking detectado antes de que el paquete llegue al cliente.</p></div></div>
+    <div class="htitle shim-green" style="margin-bottom:24px">Un error nunca detiene el flujo</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="gc" style="padding:28px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#FACC15,transparent)"></div>
+          <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(250,204,21,.12);margin-bottom:18px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="mlbl" style="color:#FACC15;margin-bottom:10px">No-Read</div>
+          <div class="hcard">Recirculación automática</div>
+        </div>
+        <div class="gc" style="padding:28px">
+          <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+          <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,82,0,.12);margin-bottom:18px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+          <div class="mlbl" style="color:var(--a);margin-bottom:10px">Destino inválido</div>
+          <div class="hcard">Corrección manual</div>
+        </div>
+        <div class="gc" style="padding:28px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
+          <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);margin-bottom:18px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <div class="mlbl" style="color:#3B82F6;margin-bottom:10px">Anomalía IA</div>
+          <div class="hcard">Desvío preventivo</div>
+        </div>
+        <div class="gc" style="padding:28px">
+          <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+          <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(34,197,94,.12);margin-bottom:18px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="mlbl" style="color:#22C55E;margin-bottom:10px">Peso ≠ WMS</div>
+          <div class="hcard">Error de picking</div>
+        </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
-        <div class="gc" style="padding:28px 26px"><div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div><div class="mlbl" style="color:#22C55E;margin-bottom:10px">Impacto de la IA</div><div class="stat-n" style="font-size:clamp(32px,3.5vw,50px)">5% → &lt;1%</div><p class="body-s" style="margin-top:8px">Tasa de recirculación por no-lectura antes y después de CNN</p></div>
-        <div class="gc" style="padding:22px 26px"><div class="mlbl" style="margin-bottom:8px">Principio clave</div><div class="hlead" style="margin-bottom:0;font-size:clamp(16px,1.7vw,22px)">Un error nunca detiene el flujo</div></div>
+      <div class="gc" style="padding:36px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+        <div class="mlbl" style="color:#22C55E">Impacto de la IA</div>
+        <div class="stat-n">5% → &lt;1%</div>
+        <p class="body-s">Tasa de recirculación por no-lectura</p>
       </div>
     </div>
   </div>
@@ -488,24 +544,30 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
   <div class="orb" style="width:420px;height:420px;border-color:rgba(255,82,0,.07);top:50%;right:-80px;transform:translateY(-50%);animation-duration:34s"></div>
   <div class="inn" style="gap:20px">
     <div class="stag"><span class="stag-n">11</span><span class="stag-bar"></span><span class="stag-l">El sector en la práctica</span></div>
-    <div class="htitle shim" style="margin-bottom:4px">El sistema en el mundo real</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-      <div class="gc" style="padding:26px 28px;display:flex;flex-direction:column;gap:14px">
-        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,82,0,.3),transparent)"></div>
-        <div class="mlbl" style="color:var(--a)">E-Commerce · Parcel</div>
-        <div style="font-family:var(--syne);font-size:clamp(30px,3.2vw,46px);font-weight:800;line-height:.9;letter-spacing:-.025em">Amazon · DHL</div>
-        <p class="body-s">Millones de paquetes clasificados al día. El WES reequilibra rampas en tiempo real según la demanda del momento.</p>
-        <div style="display:flex;align-items:center;gap:9px;padding:10px 16px;border-radius:9px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.16)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg><span style="font-family:var(--inter);font-size:clamp(12px,1.1vw,14px);font-weight:600;color:#22C55E">−35% en tiempo de ciclo picking → expedición</span></div>
+    <div class="htitle shim" style="margin-bottom:16px">El sistema en el mundo real</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="gc" style="padding:32px">
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">E-Commerce · Parcel</div>
+        <div class="htitle" style="font-size:clamp(36px,4vw,58px);line-height:.9;margin-bottom:16px">Amazon<br/>DHL</div>
+        <p class="body-s" style="margin-bottom:16px">Millones de paquetes/día. WES reequilibra rampas en tiempo real.</p>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          <span class="mlbl" style="color:#22C55E">−35% tiempo de ciclo</span>
+        </div>
       </div>
-      <div class="gc" style="padding:26px 28px;display:flex;flex-direction:column;gap:14px">
-        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,82,0,.3),transparent)"></div>
-        <div class="mlbl" style="color:var(--a)">Fashion · Aeropuertos · Express</div>
-        <div style="font-family:var(--syne);font-size:clamp(30px,3.2vw,46px);font-weight:800;line-height:.9;letter-spacing:-.025em">Zalando · UPS</div>
-        <p class="body-s">Del colgador de ropa a la maleta de aeropuerto — la misma plataforma adapta su lógica según las reglas configuradas.</p>
-        <div style="display:flex;align-items:center;gap:9px;padding:10px 16px;border-radius:9px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.16)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg><span style="font-family:var(--inter);font-size:clamp(12px,1.1vw,14px);font-weight:600;color:#22C55E">Fulfillment same-day en múltiples centros</span></div>
+      <div class="gc" style="padding:32px">
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">Fashion · Aeropuertos · Express</div>
+        <div class="htitle" style="font-size:clamp(36px,4vw,58px);line-height:.9;margin-bottom:16px">Zalando<br/>UPS</div>
+        <p class="body-s" style="margin-bottom:16px">Del colgador al aeropuerto — misma plataforma, lógica adaptada.</p>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          <span class="mlbl" style="color:#22C55E">Same-day fulfillment activo</span>
+        </div>
       </div>
     </div>
-    <p class="body-s">Principales proveedores: Vanderlande · Dematic · Beumer Group · Honeywell Intelligrated · Knapp</p>
+    <p class="body-s">Vanderlande · Dematic · Beumer Group · Honeywell Intelligrated · Knapp</p>
   </div>
 </div>
 
@@ -514,14 +576,50 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
   <div class="orb" style="width:380px;height:380px;border-color:rgba(34,197,94,.07);top:-60px;right:-60px;animation-duration:26s"></div>
   <div class="inn">
     <div class="stag"><span class="stag-n">12</span><span class="stag-bar"></span><span class="stag-l">Logística 4.0</span></div>
-    <div class="htitle shim" style="margin-bottom:22px">IA: del sistema reactivo al predictivo</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px">
-      <div class="gc" style="padding:22px"><div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div><div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(255,82,0,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><div class="hcard" style="color:var(--a);margin-bottom:8px">Routing dinámico ML</div><div class="body-s">Equilibra chutes en tiempo real. Evita cuellos de botella antes de que ocurran.</div></div>
-      <div class="gc" style="padding:22px"><div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div><div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(59,130,246,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="hcard" style="color:#3B82F6;margin-bottom:8px">Mantenimiento predictivo</div><div class="body-s">Modelos de desgaste por sensor. Predice fallos horas antes.</div></div>
-      <div class="gc" style="padding:22px"><div class="gc-top" style="background:linear-gradient(90deg,#2DD4BF,transparent)"></div><div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(45,212,191,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="hcard" style="color:#2DD4BF;margin-bottom:8px">CNN en visión</div><div class="body-s">No-lecturas del 5% → &lt;1%. Infiere identidad en etiquetas dañadas.</div></div>
-      <div class="gc" style="padding:22px"><div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div><div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(34,197,94,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><div class="hcard" style="color:#22C55E;margin-bottom:8px">Robótica colaborativa</div><div class="body-s">AMRs + sorters como un único flujo. Sin distinción robot/cinta.</div></div>
-      <div class="gc" style="padding:22px"><div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div><div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(167,139,250,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="hcard" style="color:#A78BFA;margin-bottom:8px">Digital Twin</div><div class="body-s">Simula cambios de routing sin parar la instalación real.</div></div>
-      <div class="gc" style="padding:22px"><div class="gc-top" style="background:linear-gradient(90deg,#FACC15,transparent)"></div><div class="ico" style="width:40px;height:40px;border-radius:10px;background:rgba(250,204,21,.1);margin-bottom:12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="hcard" style="color:#FACC15;margin-bottom:8px">IA Generativa</div><div class="body-s">"¿Por qué hay cola en el chute 12?" — análisis y propuesta en lenguaje natural.</div></div>
+    <div class="htitle shim" style="margin-bottom:20px">IA aplicada al sorter</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,82,0,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">ML en routing</div>
+        <div class="hcard" style="margin-bottom:10px">Equilibrio dinámico</div>
+        <p class="body-s">Anticipa cuellos de botella antes de que ocurran.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="mlbl" style="color:#3B82F6;margin-bottom:10px">Mantenimiento predictivo</div>
+        <div class="hcard" style="margin-bottom:10px">Fallo predicho</div>
+        <p class="body-s">Sensores de desgaste predicen averías horas antes.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#2DD4BF,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(45,212,191,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <div class="mlbl" style="color:#2DD4BF;margin-bottom:10px">CNN en visión</div>
+        <div class="hcard" style="margin-bottom:10px">5% → <1%</div>
+        <p class="body-s">Etiquetas dañadas — identidad inferida.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(34,197,94,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="mlbl" style="color:#22C55E;margin-bottom:10px">Robótica colaborativa</div>
+        <div class="hcard" style="margin-bottom:10px">AMR + cinta</div>
+        <p class="body-s">Un único flujo. Sin distinción robot/transportador.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(167,139,250,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="mlbl" style="color:#A78BFA;margin-bottom:10px">Digital Twin</div>
+        <div class="hcard" style="margin-bottom:10px">Simula sin parar</div>
+        <p class="body-s">Cambios de routing probados en gemelo digital.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#FACC15,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(250,204,21,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="mlbl" style="color:#FACC15;margin-bottom:10px">IA Generativa</div>
+        <div class="hcard" style="margin-bottom:10px">Lenguaje natural</div>
+        <p class="body-s">"¿Por qué hay cola en el chute 12?" — respuesta inmediata.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -531,20 +629,38 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
   <div class="orb" style="width:300px;height:300px;border-color:rgba(59,130,246,.09);top:-50px;left:-50px;animation-duration:24s"></div>
   <div class="inn">
     <div class="stag"><span class="stag-n">13</span><span class="stag-bar"></span><span class="stag-l">Ciberseguridad</span></div>
-    <div class="htitle shim-blue" style="margin-bottom:22px">Por qué la seguridad es crítica</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:13px">
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div><div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(59,130,246,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="hcard" style="margin-bottom:10px">Máquinas aisladas de Internet</div><p class="body-m">Los controladores del sorter operan en red separada. Los datos pasan por una puerta estrictamente controlada — como un puesto fronterizo.</p></div>
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div><div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(255,82,0,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="hcard" style="margin-bottom:10px">Solo personas autorizadas</div><p class="body-m">Para cambiar la lógica de clasificación se requiere autenticación con dispositivo reconocido. Sin eso, no se reprograma nada.</p></div>
-      <div class="gc" style="padding:24px"><div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div><div class="ico" style="width:44px;height:44px;border-radius:10px;background:rgba(34,197,94,.1);margin-bottom:14px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="hcard" style="margin-bottom:10px">Todo queda registrado</div><p class="body-m">Cada paquete, cada operación, cada cambio — log inmutable con timestamp. Si algo falla, hay fuente de verdad para la investigación.</p></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
-      <div class="gc" style="padding:22px 24px;display:flex;gap:14px;align-items:flex-start">
-        <div class="ico" style="width:36px;height:36px;border-radius:8px;background:rgba(250,204,21,.1);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-        <div><div style="font-family:var(--inter);font-weight:700;font-size:clamp(13px,1.3vw,15px);color:var(--txt);margin-bottom:3px">Los datos de etiquetas son datos de clientes</div><p class="body-m">Nombre, dirección, artículo comprado. Un ataque al sorter es también una brecha de datos en masa.</p></div>
+    <div class="htitle shim-blue" style="margin-bottom:20px">Por qué la seguridad es crítica</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px">
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#3B82F6,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="mlbl" style="color:#3B82F6;margin-bottom:10px">Red aislada</div>
+        <div class="hcard" style="margin-bottom:10px">PLCs sin Internet</div>
+        <p class="body-s">Zona industrial separada de la red corporativa.</p>
       </div>
-      <div class="gc" style="padding:22px 24px;display:flex;gap:14px;align-items:flex-start">
-        <div class="ico" style="width:36px;height:36px;border-radius:8px;background:rgba(59,130,246,.1);flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <div><div style="font-family:var(--inter);font-weight:700;font-size:clamp(13px,1.3vw,15px);color:var(--txt);margin-bottom:3px">Estándar IEC 62443</div><p class="body-m">Marco de referencia del sector para proteger sistemas industriales automatizados. Requisito mínimo en instalaciones líderes.</p></div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,82,0,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">Acceso controlado</div>
+        <div class="hcard" style="margin-bottom:10px">Autenticación obligatoria</div>
+        <p class="body-s">Dispositivo reconocido requerido para modificar la lógica.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(34,197,94,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="mlbl" style="color:#22C55E;margin-bottom:10px">Trazabilidad total</div>
+        <div class="hcard" style="margin-bottom:10px">Log inmutable</div>
+        <p class="body-s">Cada operación registrada con timestamp permanente.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="gc" style="padding:28px;display:flex;align-items:center;gap:18px">
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(250,204,21,.12);flex-shrink:0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div><div class="mlbl" style="color:#FACC15;margin-bottom:6px">Datos en juego</div><div class="hcard">Las etiquetas contienen datos de clientes</div></div>
+      </div>
+      <div class="gc" style="padding:28px;display:flex;align-items:center;gap:18px">
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(59,130,246,.12);flex-shrink:0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div><div class="mlbl" style="color:#3B82F6;margin-bottom:6px">Estándar del sector</div><div class="hcard">IEC 62443 — requisito mínimo</div></div>
       </div>
     </div>
   </div>
@@ -555,14 +671,40 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
   <div class="orb" style="width:400px;height:400px;border-color:rgba(167,139,250,.08);top:-70px;left:50%;transform:translateX(-50%);animation-duration:32s"></div>
   <div class="inn">
     <div class="stag"><span class="stag-n">14</span><span class="stag-bar"></span><span class="stag-l">El futuro</span></div>
-    <div class="htitle shim-purple" style="margin-bottom:22px">De sorters fijos a flotas autónomas</div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:13px">
-      <div class="gc" style="padding:22px;display:flex;flex-direction:column;gap:12px"><div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div><div style="font-family:var(--inter);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--a)">HOY</div><div class="ico" style="width:38px;height:38px;border-radius:9px;background:rgba(255,82,0,.1);margin:6px 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><div class="hcard" style="font-size:clamp(14px,1.4vw,17px)">AMRs + sorters</div><p class="body-m">Un único flujo orquestado por WES.</p></div>
-      <div class="gc" style="padding:22px;display:flex;flex-direction:column;gap:12px"><div class="gc-top" style="background:linear-gradient(90deg,#FACC15,transparent)"></div><div style="font-family:var(--inter);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FACC15">2025–26</div><div class="ico" style="width:38px;height:38px;border-radius:9px;background:rgba(250,204,21,.1);margin:6px 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"/><path d="M12 8v4l3 3"/></svg></div><div class="hcard" style="font-size:clamp(14px,1.4vw,17px)">WES autónomo</div><p class="body-m">Auto-optimiza sus propias reglas.</p></div>
-      <div class="gc" style="padding:22px;display:flex;flex-direction:column;gap:12px"><div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div><div style="font-family:var(--inter);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#A78BFA">2026–28</div><div class="ico" style="width:38px;height:38px;border-radius:9px;background:rgba(167,139,250,.1);margin:6px 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="hcard" style="font-size:clamp(14px,1.4vw,17px)">Digital Twin + 5G</div><p class="body-m">Coordenadas SLAM en vez de pulsos. Escalabilidad sin obra.</p></div>
-      <div class="gc" style="padding:22px;display:flex;flex-direction:column;gap:12px"><div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div><div style="font-family:var(--inter);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#22C55E">+2028</div><div class="ico" style="width:38px;height:38px;border-radius:9px;background:rgba(34,197,94,.1);margin:6px 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div class="hcard" style="font-size:clamp(14px,1.4vw,17px)">Intralogística verde</div><p class="body-m">Energía como KPI primario junto al throughput.</p></div>
+    <div class="htitle shim-purple" style="margin-bottom:20px">De sorters fijos a flotas autónomas</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px">
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,var(--a),transparent)"></div>
+        <div class="mlbl" style="color:var(--a);margin-bottom:10px">HOY</div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(255,82,0,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="hcard" style="margin-bottom:10px">AMRs + sorters</div>
+        <p class="body-s">Un único flujo orquestado.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#FACC15,transparent)"></div>
+        <div class="mlbl" style="color:#FACC15;margin-bottom:10px">2025–26</div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(250,204,21,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="hcard" style="margin-bottom:10px">WES autónomo</div>
+        <p class="body-s">Auto-optimiza sus propias reglas.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#A78BFA,transparent)"></div>
+        <div class="mlbl" style="color:#A78BFA;margin-bottom:10px">2026–28</div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(167,139,250,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="hcard" style="margin-bottom:10px">Digital Twin + 5G</div>
+        <p class="body-s">SLAM en vez de pulsos. Sin obra.</p>
+      </div>
+      <div class="gc" style="padding:28px">
+        <div class="gc-top" style="background:linear-gradient(90deg,#22C55E,transparent)"></div>
+        <div class="mlbl" style="color:#22C55E;margin-bottom:10px">+2028</div>
+        <div class="ico" style="width:48px;height:48px;border-radius:12px;background:rgba(34,197,94,.12);margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <div class="hcard" style="margin-bottom:10px">Intralogística verde</div>
+        <p class="body-s">Energía como KPI primario.</p>
+      </div>
     </div>
-    <div style="padding:14px 24px;border-radius:12px;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.14);font-family:var(--inter);font-style:italic;font-weight:300;font-size:clamp(13px,1.2vw,16px);color:var(--txt2);line-height:1.7">"El WCS del futuro no solo controlará máquinas — interpretará el contexto, aprenderá de cada operación y tomará decisiones que hoy requieren un equipo entero de ingenieros."</div>
+    <div class="gc" style="padding:20px 28px;border-color:rgba(167,139,250,.2)">
+      <p class="body-s" style="font-style:italic;color:var(--txt2)">"El WCS del futuro no controlará máquinas — interpretará el contexto y aprenderá de cada operación."</p>
+    </div>
   </div>
 </div>
 
